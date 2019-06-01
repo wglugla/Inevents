@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Users.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +68,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Simple Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -96,6 +101,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="niebo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="tlo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApiHelper\APIConnect.csproj">
+      <Project>{0b12e229-0a70-4a02-8444-fba59b0a24c2}</Project>
+      <Name>APIConnect</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Http;
+using System.Net;
+using System.IO;
+using APIConnect;
 
 namespace NoteWeather
 {
@@ -20,9 +24,67 @@ namespace NoteWeather
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+        public string Login { private get; set; }
+        public string Password { private get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            ApiHelper.InitializeClient();
+        }
+
+
+
+        private bool ValidateLogin()
+        {
+            if (Login.Length > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool ValidatePassword()
+        {
+            if (Password.Length > 0 )
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void ShowError(string message)
+        {
+            loginErrorMessagebox.Text = message;
+        }
+
+        private void ClearError()
+        {
+            loginErrorMessagebox.Text = String.Empty;
+        }
+
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            Login = loginBox.Text;
+            Password = passwordBox.Text;
+
+            if (!ValidateLogin())
+            {
+                ShowError("Wprowadź login");
+            }
+            else if (!ValidatePassword())
+            {
+                ShowError("Wprowadź hasło!");
+            }
+            else
+            {
+                ClearError();
+                Users users = new Users();
+                object result = await users.LoadUsers();
+                ShowError(result.ToString());
+                
+            }
         }
     }
 }

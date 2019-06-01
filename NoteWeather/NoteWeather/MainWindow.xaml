@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoteWeather"
         mc:Ignorable="d"
-        Title="NoteWeather" Height="450" Width="800" Icon="favicon.png">
-    <Grid>
-        
+        Title="NoteWeather" Height="500" Width="800" MinWidth="500" MinHeight="500" Icon="favicon.png">
+    <Grid Background="#FF3D3939">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*" MaxWidth="400" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1" MaxHeight="400"  VerticalAlignment="Center" Margin="0 0 0 10">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="loginBox" Grid.Row="0" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="nazwa1" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="passwordBox" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="nazwa4" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center" Margin="0,40,0,10" Grid.RowSpan="2"/>
+            <Button x:Name="loginButton" Grid.Row="5"  Content="Zaloguj się" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="105" Background="#FF0E6ADD" BorderBrush="{x:Null}" Foreground="#FFEDEDED" Margin="0,14.6,295,0" Height="35" FontSize="16" Click="LoginButton_Click"/>
+            <TextBlock x:Name="loginErrorMessagebox" HorizontalAlignment="Left" Margin="0,92.986,0,-141.613" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Width="400" Height="98.627"><Run Text=""/></TextBlock>
+
+        </Grid>
+
+
     </Grid>
 </Window>
