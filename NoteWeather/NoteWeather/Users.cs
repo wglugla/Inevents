@@ -14,7 +14,7 @@ namespace NoteWeather
         {
             try
             {
-                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("users");
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:3000/api/users");
                 if (response.IsSuccessStatusCode)
                 {
                     return await response.Content.ReadAsStringAsync();
