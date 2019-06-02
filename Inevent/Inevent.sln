@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteWeather", "NoteWeather\NoteWeather.csproj", "{867763B1-13BC-4920-A8A0-5EB6A6879E2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inevent", "NoteWeather\Inevent.csproj", "{867763B1-13BC-4920-A8A0-5EB6A6879E2D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIConnect", "ApiHelper\APIConnect.csproj", "{0B12E229-0A70-4A02-8444-FBA59B0A24C2}"
 EndProject

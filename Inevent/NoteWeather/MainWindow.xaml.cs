@@ -17,7 +17,7 @@ using System.Net;
 using System.IO;
 using APIConnect;
 
-namespace NoteWeather
+namespace Inevent
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -32,6 +32,8 @@ namespace NoteWeather
         {
             InitializeComponent();
             ApiHelper.InitializeClient();
+            ShowError("TEST");
+            // ShowError(Properties.Settings.Default.accessToken);
         }
 
 
@@ -80,9 +82,18 @@ namespace NoteWeather
             else
             {
                 ClearError();
-                Users users = new Users();
-                object result = await users.LoadUsers();
-                ShowError(result.ToString());
+                // Users users = new Users();
+                // object result = await users.LoadUsers();
+                // ShowError(result.ToString());
+                Login login = new Login();
+                if (await login.LoginUser(Login, Password))
+                {
+                    ShowError(Properties.Settings.Default.accessToken);
+                }
+                else
+                {
+                    ShowError("Nie udało się zalogować!");
+                }
                 
             }
         }

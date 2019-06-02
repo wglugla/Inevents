@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoteWeather
+namespace Inevent
 {
     class Users
     {
@@ -14,7 +14,7 @@ namespace NoteWeather
         {
             try
             {
-                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:3000/api/users");
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/users");
                 if (response.IsSuccessStatusCode)
                 {
                     return await response.Content.ReadAsStringAsync();
