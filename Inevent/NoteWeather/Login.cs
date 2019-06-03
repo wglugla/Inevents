@@ -13,14 +13,17 @@ namespace Inevent
     {
         public async Task<bool> LoginUser (string username, string password)
         {
-            string json = JsonConvert.SerializeObject(new
+            object data = new
             {
-                username,
-                password
-            });
+                username = username,
+                password = password
+            };
+
+            var json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/users");
+                HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync("http://localhost:5000/api/login", content);
                 if (response.IsSuccessStatusCode)
                 {
                     string token = await response.Content.ReadAsStringAsync();

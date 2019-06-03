@@ -3,9 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NoteWeather"
+        xmlns:local="clr-namespace:Inevent"
+        xmlns:viewmodels="clr-namespace:Inevent.ViewModels"
+        xmlns:views="clr-namespace:Inevent.Views"
         mc:Ignorable="d"
         Title="Inevent" Height="500" Width="800" MinWidth="500" MinHeight="500">
+    <Window.Resources>
+        <DataTemplate x:Name="DashboardViewTemplate" DataType="{x:Type viewmodels:DashboardModel}">
+            <views:DashboardView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid Background="#FF3D3939">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -25,8 +32,8 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox x:Name="loginBox" Grid.Row="0" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="nazwa1" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="passwordBox" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="nazwa4" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center" Margin="0,40,0,10" Grid.RowSpan="2"/>
+            <TextBox x:Name="loginBox" Grid.Row="0" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="admin" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="passwordBox" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="admin" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center" Margin="0,40,0,10" Grid.RowSpan="2"/>
             <Button x:Name="loginButton" Grid.Row="5"  Content="Zaloguj się" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="105" Background="#FF0E6ADD" BorderBrush="{x:Null}" Foreground="#FFEDEDED" Margin="0,14.6,295,0" Height="35" FontSize="16" Click="LoginButton_Click"/>
             <TextBlock x:Name="loginErrorMessagebox" HorizontalAlignment="Left" Margin="0,92.986,0,-141.613" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Width="400" Height="98.627"><Run Text=""/></TextBlock>
 

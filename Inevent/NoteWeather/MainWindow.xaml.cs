@@ -16,6 +16,7 @@ using System.Net.Http;
 using System.Net;
 using System.IO;
 using APIConnect;
+using Inevent.ViewModels;
 
 namespace Inevent
 {
@@ -70,7 +71,7 @@ namespace Inevent
         {
             Login = loginBox.Text;
             Password = passwordBox.Text;
-
+            
             if (!ValidateLogin())
             {
                 ShowError("Wprowadź login");
@@ -82,12 +83,11 @@ namespace Inevent
             else
             {
                 ClearError();
-                // Users users = new Users();
-                // object result = await users.LoadUsers();
-                // ShowError(result.ToString());
                 Login login = new Login();
-                if (await login.LoginUser(Login, Password))
+                bool success = await login.LoginUser(Login, Password);
+                if (success == true)
                 {
+                    Content = new DashboardModel();
                     ShowError(Properties.Settings.Default.accessToken);
                 }
                 else
