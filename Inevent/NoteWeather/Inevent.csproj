@@ -60,6 +60,8 @@
     </ApplicationDefinition>
     <Compile Include="AuthenticationToken.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="Models\LoginResponse.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="ViewModels\DashboardModel.cs" />
     <Compile Include="Views\DashboardView.xaml.cs">
@@ -119,8 +121,6 @@
       <Name>APIConnect</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

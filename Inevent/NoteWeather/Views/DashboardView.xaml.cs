@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inevent.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,27 @@ namespace Inevent.Views
     /// </summary>
     public partial class DashboardView : UserControl
     {
+        public int UserID { get; set; }
         public DashboardView()
         {
             InitializeComponent();
-            TokenLabel.Content = Properties.Settings.Default.accessToken;
+            LoadUserData();
+            UserID = Properties.Settings.Default.id;
+        }
+
+        private async Task LoadUserData()
+        {
+            Users user = new Users();
+            try
+            {
+                User req = new User();
+                req = await user.LoadUser();
+                Username.Content = req.Username;
+            }
+            catch (Exception e)
+            {
+                Username.Content = "Error" + e;
+            }
         }
     }
 }

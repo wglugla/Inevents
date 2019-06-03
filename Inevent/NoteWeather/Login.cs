@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using APIConnect;
+using Inevent.Models;
 using Newtonsoft.Json;
 
 namespace Inevent
@@ -26,8 +27,10 @@ namespace Inevent
                 HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync("http://localhost:5000/api/login", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    string token = await response.Content.ReadAsStringAsync();
-                    AuthenticationToken.SaveToken(token);
+                    string result = await response.Content.ReadAsStringAsync();
+                    LoginResponse jsonObject = JsonConvert.DeserializeObject<LoginResponse>(result);
+                    AuthenticationToken.SaveToken(jsonObject.token);
+                    Properties.Settings.Default.id = Convert.ToInt32(jsonObject.id);
                     return true;
                 }
                 return false;
