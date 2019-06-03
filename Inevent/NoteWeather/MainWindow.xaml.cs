@@ -34,6 +34,7 @@ namespace Inevent
             InitializeComponent();
             ApiHelper.InitializeClient();
             ShowError("TEST");
+            ErrorPopup.IsOpen = false;
             // ShowError(Properties.Settings.Default.accessToken);
         }
 
@@ -59,7 +60,8 @@ namespace Inevent
 
         private void ShowError(string message)
         {
-            loginErrorMessagebox.Text = message;
+            ErrorPopup.IsOpen = true;
+            ErrorPopupContent.Text = message;
         }
 
         private void ClearError()
@@ -96,6 +98,11 @@ namespace Inevent
                 }
                 
             }
+        }
+
+        private void ErrorPopupCloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorPopup.IsOpen = false;
         }
     }
 }

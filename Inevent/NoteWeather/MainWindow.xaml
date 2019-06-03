@@ -36,9 +36,16 @@
             <TextBox x:Name="passwordBox" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="admin" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center" Margin="0,40,0,10" Grid.RowSpan="2"/>
             <Button x:Name="loginButton" Grid.Row="5"  Content="Zaloguj się" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="105" Background="#FF0E6ADD" BorderBrush="{x:Null}" Foreground="#FFEDEDED" Margin="0,14.6,295,0" Height="35" FontSize="16" Click="LoginButton_Click"/>
             <TextBlock x:Name="loginErrorMessagebox" HorizontalAlignment="Left" Margin="0,92.986,0,-141.613" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Width="400" Height="98.627"><Run Text=""/></TextBlock>
+            <Popup x:Name="ErrorPopup">
+                <Grid Background="#FFEA5D5D"  Height="70" Width="400">
+                    <TextBox Text="Wystąpił błąd!"  Background="{x:Null}" Foreground="White" Margin="10,10,291.997,39.907" FontWeight="Bold" Height="20.093" Width="98.003" BorderBrush="{x:Null}"/>
+                    <TextBox x:Name="ErrorPopupContent" Background="{x:Null}" Foreground="White" Text="Przykładowy tekst błędu" BorderBrush="{x:Null}" Margin="10,35.093,17.2,10" />
+                    <Button x:Name="ErrorPopupCloseButton" Content="x" HorizontalAlignment="Left" Margin="371.534,9,0,0" VerticalAlignment="Top" Width="18.466" Click="ErrorPopupCloseButton_Click"/>
 
+                </Grid>
+
+            </Popup>
         </Grid>
-
 
     </Grid>
 </Window>
