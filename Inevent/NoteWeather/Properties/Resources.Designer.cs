@@ -59,5 +59,14 @@ namespace Inevent.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        internal static string currentEvent {
+            get {
+                return ResourceManager.GetString("currentEvent", resourceCulture);
+            }
+        }
     }
 }

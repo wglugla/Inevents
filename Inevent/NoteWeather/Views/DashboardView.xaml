@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:Inevent.ViewModels"
+             xmlns:views="clr-namespace:Inevent.Views"
              xmlns:local="clr-namespace:Inevent.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -30,14 +32,40 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,0,0">
-                <Button Width="Auto" Content="Home" FontSize="18" FontFamily="/Inevent;component/Fonts/#Open Sans" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Margin="0,0,0,10"/>
-                <Button Width="Auto" Content="Find event" FontSize="18" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10"/>
-                <Button Width="Auto" Content="Create event" FontSize="18" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+                <Button Width="Auto" Content="Edytuj profil" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Margin="0,0,0,10"/>
+                <Button Width="Auto" Content="Znajdź wydarzenia" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10"/>
+                <Button Width="Auto" Content="Utwórz wydarzenie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
                 <Label  x:Name="Username" Content="Hello Username!" FontWeight="Bold"  FontSize="16"/>
-                <Label Content="Upcoming events"></Label>
+                <Label Content="Upcoming events" Background="{x:Null}" FontSize="14"></Label>
+                <!--<StackPanel x:Name="UpcomingEvents" Height="115.2">
+
+                </StackPanel>-->
+                <ListBox Name="Upcoming" Height="78.4" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Wtorek"/>
+                                        <TextBlock Text="{Binding EventDate}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Title}" />
+                                        <TextBlock Text="{Binding EventDate}" />
+                                        <TextBlock Text="{Binding Place}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Weź udział" Tag="{Binding Id}" Click="JoinButton_click"/> 
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
+
             <Grid Grid.Row="1" Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>

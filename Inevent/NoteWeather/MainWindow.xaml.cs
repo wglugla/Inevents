@@ -35,7 +35,6 @@ namespace Inevent
             ApiHelper.InitializeClient();
             ShowError("TEST");
             ErrorPopup.IsOpen = false;
-            // ShowError(Properties.Settings.Default.accessToken);
         }
 
 

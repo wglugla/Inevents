@@ -12,8 +12,11 @@
         <DataTemplate x:Name="DashboardViewTemplate" DataType="{x:Type viewmodels:DashboardModel}">
             <views:DashboardView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="EventInfoTemplate" DataType="{x:Type viewmodels:EventInfoModel}">
+            <views:EventInfo DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
-    <Grid Background="#FF3D3939">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*" MaxWidth="400" />
@@ -23,7 +26,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="1" Grid.Row="1" MaxHeight="400"  VerticalAlignment="Center" Margin="0 0 0 10">
+        <Grid Grid.Column="1" Grid.Row="1" MaxHeight="400"  VerticalAlignment="Center" Margin="0,0,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -32,9 +35,9 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox x:Name="loginBox" Grid.Row="0" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="admin" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center" FontFamily="/Inevent;component/Fonts/#Open Sans"/>
-            <TextBox x:Name="passwordBox" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="admin" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="#99FFFFFF" BorderThickness="0 0 0 1" Foreground="#FFE8E8E8" FontSize="16" VerticalContentAlignment="Center" Margin="0,40,0,10" Grid.RowSpan="2" FontFamily="/Inevent;component/Fonts/#Open Sans"/>
-            <Button x:Name="loginButton" Grid.Row="5"  Content="Zaloguj się" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="105" Background="#FF0E6ADD" BorderBrush="{x:Null}" Foreground="#FFEDEDED" Margin="0,14.6,295,0" Height="35" FontSize="16" Click="LoginButton_Click" FontFamily="/Inevent;component/Fonts/#Open Sans"/>
+            <TextBox x:Name="loginBox" Grid.Row="0" Style="{StaticResource formInput}" TextWrapping="Wrap" Text="admin" Background="{x:Null}" Foreground="Black"  VerticalContentAlignment="Center" Grid.RowSpan="1" FontFamily="/Inevent;component/Fonts/#Open Sans Light" Margin="10,-8.133,10,10" />
+            <TextBox x:Name="passwordBox" Grid.Row="2" Style="{StaticResource formInput}" TextWrapping="Wrap" Text="admin" Background="{x:Null}" Foreground="Black" VerticalContentAlignment="Center" Grid.RowSpan="2" FontFamily="/Inevent;component/Fonts/#Open Sans Light"/>
+            <Button x:Name="loginButton" Grid.Row="5" Style="{StaticResource agreeButton}"  Content="Zaloguj się" HorizontalAlignment="Left"  VerticalAlignment="Center" Background="#FF0E6ADD" BorderBrush="{x:Null}" Foreground="#FFEDEDED" FontSize="14" Click="LoginButton_Click" FontFamily="/Inevent;component/Fonts/#Open Sans"/>
             <TextBlock x:Name="loginErrorMessagebox" HorizontalAlignment="Left" Margin="0,92.986,0,-141.613" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Width="400" Height="98.627"><Run Text=""/></TextBlock>
             <Popup x:Name="ErrorPopup">
                 <Grid Background="#FFEA5D5D"  Height="70" Width="400">

@@ -1,4 +1,6 @@
-﻿using Inevent.Models;
+﻿using Inevent.Elements;
+using Inevent.Models;
+using Inevent.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +28,11 @@ namespace Inevent.Views
         {
             InitializeComponent();
             LoadUserData();
+            LoadEvents();
             UserID = Properties.Settings.Default.id;
         }
 
-        private async Task LoadUserData()
+        private async void LoadUserData()
         {
             Users user = new Users();
             try
@@ -42,6 +45,33 @@ namespace Inevent.Views
             {
                 Username.Content = "Error" + e;
             }
+        }
+
+        private async void LoadEvents()
+        {
+            Events events = new Events();
+            try
+            {
+                Event[] upcomingEvents = await events.LoadEvents();
+                this.Upcoming.ItemsSource = upcomingEvents;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+                throw e;
+            }
+        }
+
+        void JoinButton_click(object sender, EventArgs e)
+        {
+            MessageBox.Show((sender as Button).Tag.ToString());
+        }
+
+        void EventTile_click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            Properties.Settings.Default.currentEvent = Convert.ToInt32(btn.CommandParameter);
+            Content = new EventInfoModel();
         }
     }
 }

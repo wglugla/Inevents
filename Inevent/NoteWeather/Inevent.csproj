@@ -59,13 +59,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AuthenticationToken.cs" />
+    <Compile Include="Elements\EventTile.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="ViewModels\DashboardModel.cs" />
+    <Compile Include="ViewModels\EventInfoModel.cs" />
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventInfo.xaml.cs">
+      <DependentUpon>EventInfo.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +91,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
