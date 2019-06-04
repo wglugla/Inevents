@@ -36,7 +36,7 @@ namespace Inevent.Views
             {
                 User req = new User();
                 req = await user.LoadUser();
-                Username.Content = req.Username;
+                Username.Content = "Hello, " + req.Username + "!";
             }
             catch (Exception e)
             {
