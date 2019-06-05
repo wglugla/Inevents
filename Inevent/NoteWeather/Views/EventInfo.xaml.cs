@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Inevent.Models;
+using Inevent.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +22,33 @@ namespace Inevent.Views
     /// </summary>
     public partial class EventInfo : UserControl
     {
+        private List<int> signedId = new List<int>();
         public EventInfo()
         {
             InitializeComponent();
-            CurrentId.Content = Properties.Settings.Default.currentEvent;
+            Load();
+        }
+
+        public async void Load()
+        {
+            try
+            {
+
+            signedId = await Events.LoadSignedId(Properties.Settings.Default.id);
+            Event[] current = await Events.LoadEvent(Properties.Settings.Default.currentEvent);
+            Info.ItemsSource = current;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        void DashboardButton_click(object sender, EventArgs e)
+        {
+            Content = new DashboardModel();
         }
     }
+
+    
 }

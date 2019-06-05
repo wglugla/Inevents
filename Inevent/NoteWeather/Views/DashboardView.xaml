@@ -13,81 +13,40 @@
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderThickness="0,0,0,2">
-            <Border.BorderBrush>
-                <SolidColorBrush Color="#FFEAEAEA" Opacity="0.5"/>
-            </Border.BorderBrush>
-            <Grid Grid.Row="0" Background="White">
-                <Label Content="Inevent" FontFamily="/Inevent;component/Fonts/#Open Sans ExtraBold" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="{x:Null}" FontSize="24" Margin="0" MinWidth="160" MinHeight="70" BorderThickness="0,0,2,0" Foreground="#FF525252">
-                    <Label.BorderBrush>
-                        <SolidColorBrush Color="#FFEAEAEA" Opacity="0.5"/>
-                    </Label.BorderBrush>
-                </Label>
-            </Grid>
-        </Border>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,0,0">
-                <Button Width="Auto" Content="Edytuj profil" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Margin="0,0,0,10"/>
-                <Button Width="Auto" Content="Znajdź wydarzenia" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10"/>
-                <Button Width="Auto" Content="Utwórz wydarzenie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-                <Label  x:Name="Username" Content="Hello Username!" FontWeight="Bold"  FontSize="16"/>
-                <Label Content="Upcoming events" Background="{x:Null}" FontSize="14"></Label>
-                <!--<StackPanel x:Name="UpcomingEvents" Height="115.2">
-
-                </StackPanel>-->
-                <ListBox Name="Upcoming" Height="78.4" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="Wtorek"/>
-                                        <TextBlock Text="{Binding EventDate}" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Title}" />
-                                        <TextBlock Text="{Binding EventDate}" />
-                                        <TextBlock Text="{Binding Place}" />
-                                    </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.RowSpan="2">
+            <Label  x:Name="Username" Content="Cześć Username!" FontWeight="Bold"  FontSize="16"/>
+            <Label Content="Nadchodzące wydarzenia" Background="{x:Null}" FontSize="14"></Label>
+            <ListBox Name="Upcoming" Height="395.2" Background="{x:Null}" BorderBrush="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Wtorek"/>
+                                    <TextBlock Text="{Binding EventDate}" />
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="Weź udział" Tag="{Binding Id}" Click="JoinButton_click"/> 
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Title}" />
+                                    <TextBlock Text="{Binding EventDate}" />
+                                    <TextBlock Text="{Binding Place}" />
                                 </StackPanel>
                             </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
-
-            <Grid Grid.Row="1" Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <!-- Sekcja today/tomorrow/this week/choose data-->
-                <Grid Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Content="Today" />
-                    <Button Grid.Row="0" Grid.Column="1" Content="Tomorrow" />
-                    <Button Grid.Row="1" Grid.Column="0" Content="This week" />
-                    <Button Grid.Row="1" Grid.Column="1" Content="Choose data" />
-                </Grid>
-            </Grid>
-        </Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Szczegóły" Tag="{Binding Id}" Click="JoinButton_click"/>
+                                <ListBox Name="Signed">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Button Content="Opuść" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </UserControl>

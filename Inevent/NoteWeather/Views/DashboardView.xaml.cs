@@ -24,6 +24,7 @@ namespace Inevent.Views
     public partial class DashboardView : UserControl
     {
         public int UserID { get; set; }
+        public Event[] signedEvents { get; set; }
         public DashboardView()
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace Inevent.Views
             {
                 User req = new User();
                 req = await user.LoadUser();
-                Username.Content = "Hello, " + req.Username + "!";
+                Username.Content = "Cześć, " + req.Username + "!";
             }
             catch (Exception e)
             {
@@ -47,24 +48,47 @@ namespace Inevent.Views
             }
         }
 
+        
+        private bool ifSigned(int a, int[] b)
+        {
+            for (int i=0; i<b.Length; i++)
+            {
+                if (b[i] == a) return true;
+            }
+            return false;
+        }
+
+
         private async void LoadEvents()
         {
-            Events events = new Events();
             try
             {
-                Event[] upcomingEvents = await events.LoadEvents();
-                this.Upcoming.ItemsSource = upcomingEvents;
+                signedEvents = await Events.LoadSigned(Properties.Settings.Default.id);
+                Event[] upcomingEvents = await Events.LoadEvents();
+                int[] signedIds = signedEvents.Select(p => p.Id).ToArray();
+                //foreach(Event ev in upcomingEvents)
+                //{
+                //    if (ifSigned(ev.Id, signedIds) == true)
+                //    {
+                //        ev.Joined = true;
+                //    }
+                //    else
+                //    {
+                //        ev.Joined = false;
+                //    }
+                //}
+                Upcoming.ItemsSource = upcomingEvents;
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.Message);
                 throw e;
             }
         }
 
         void JoinButton_click(object sender, EventArgs e)
         {
-            MessageBox.Show((sender as Button).Tag.ToString());
+            Properties.Settings.Default.currentEvent = Convert.ToInt32((sender as Button).Tag);
+            Content = new EventInfoModel();
         }
 
         void EventTile_click(object sender, EventArgs e)
@@ -72,6 +96,11 @@ namespace Inevent.Views
             Button btn = sender as Button;
             Properties.Settings.Default.currentEvent = Convert.ToInt32(btn.CommandParameter);
             Content = new EventInfoModel();
+        }
+
+        void DashboardButton_click(object sender, EventArgs e)
+        {
+            Content = new DashboardModel();
         }
     }
 }

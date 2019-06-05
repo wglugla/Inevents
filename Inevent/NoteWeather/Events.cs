@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Inevent
 {
-    class Events
+    public static class Events
     {
-        public async Task<Event[]> LoadEvents()
+        public static async Task<Event[]> LoadEvents()
         {
             try
             {
@@ -22,6 +22,73 @@ namespace Inevent
                 {
                     string result = await response.Content.ReadAsStringAsync();
                     Event[] jsonObject = JsonConvert.DeserializeObject<Event[]>(result);
+                    return jsonObject;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static async Task<Event[]> LoadEvent(int id)
+        {
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/events/" + id);
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Event jsonObject = JsonConvert.DeserializeObject<Event>(result);
+                    Event[] res = new Event[] { jsonObject };
+                    return res;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static async Task<Event[]> LoadSigned(int userId)
+        {
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/users/" + userId + "/signed");
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Event[] jsonObject = JsonConvert.DeserializeObject<Event[]>(result);
+                    return jsonObject;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static async Task<List<int>> LoadSignedId(int userId)
+        {
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/users/" + userId + "/signedid");
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    List<int> jsonObject = JsonConvert.DeserializeObject<List<int>>(result);
                     return jsonObject;
                 }
                 else

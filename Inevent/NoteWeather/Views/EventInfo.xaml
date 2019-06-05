@@ -3,11 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:Inevent.ViewModels"
+             xmlns:views="clr-namespace:Inevent.Views"
              xmlns:local="clr-namespace:Inevent.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="PO PROSTU EVENT" Background="White" />
-        <Label x:Name="CurrentId" Content="Numerek" Margin="37.354,31.518,-37.354,-31.518" />
-    </Grid>
+    <ListBox Name="Info" Height="395.2" Background="White" BorderBrush="{x:Null}">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Wtorek"/>
+                            <TextBlock Text="{Binding EventDate}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Title}" />
+                            <TextBlock Text="{Binding EventDate}" />
+                            <TextBlock Text="{Binding Place}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Szczegóły" Tag="{Binding Id}"/>
+                        <ListBox Name="Signed">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Content="Opuść" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    <!--<StackPanel Orientation="Vertical" Background="White">
+        <ListBox Name="Info" Height="261.6" Background="#FFB3A9A9">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Name="Panee">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Wtorek"/>
+                                <TextBlock Text="{Binding EventDate}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Title}" />
+                                <TextBlock Text="{Binding EventDate}" />
+                                <TextBlock Text="{Binding Place}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Szczegóły" Tag="{Binding Id}"/>
+                            <ListBox Name="Signed">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Content="Opuść" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>-->
 </UserControl>

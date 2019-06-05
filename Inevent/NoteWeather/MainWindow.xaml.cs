@@ -88,7 +88,7 @@ namespace Inevent
                 bool success = await login.LoginUser(Login, Password);
                 if (success == true)
                 {
-                    Content = new DashboardModel();
+                    Content = new HomeModel();
                     ShowError(Properties.Settings.Default.accessToken);
                 }
                 else

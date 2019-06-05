@@ -9,10 +9,13 @@
         mc:Ignorable="d"
         Title="Inevent" Height="500" Width="800" MinWidth="500" MinHeight="500">
     <Window.Resources>
+        <DataTemplate x:Name="HomeViewTemplate" DataType="{x:Type viewmodels:HomeModel}">
+            <views:HomeView DataContext="{Binding}"/>
+        </DataTemplate>
         <DataTemplate x:Name="DashboardViewTemplate" DataType="{x:Type viewmodels:DashboardModel}">
             <views:DashboardView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate x:Name="EventInfoTemplate" DataType="{x:Type viewmodels:EventInfoModel}">
+        <DataTemplate x:Name="EventInfoViewTemplate" DataType="{x:Type viewmodels:EventInfoModel}">
             <views:EventInfo DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
@@ -44,9 +47,7 @@
                     <TextBox Text="Wystąpił błąd!"  Background="{x:Null}" Foreground="White" Margin="10,10,291.997,39.907" FontWeight="Bold" Height="20.093" Width="98.003" BorderBrush="{x:Null}"/>
                     <TextBox x:Name="ErrorPopupContent" Background="{x:Null}" Foreground="White" Text="Przykładowy tekst błędu" BorderBrush="{x:Null}" Margin="10,35.093,17.2,10" />
                     <Button x:Name="ErrorPopupCloseButton" Content="x" HorizontalAlignment="Left" Margin="371.534,9,0,0" VerticalAlignment="Top" Width="18.466" Click="ErrorPopupCloseButton_Click"/>
-
                 </Grid>
-
             </Popup>
         </Grid>
 
