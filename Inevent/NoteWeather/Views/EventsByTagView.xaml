@@ -1,10 +1,8 @@
-﻿<UserControl x:Class="Inevent.Views.DashboardView"
+﻿<UserControl x:Class="Inevent.Views.EventsByTagView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:viewmodels="clr-namespace:Inevent.ViewModels"
-             xmlns:views="clr-namespace:Inevent.Views"
              xmlns:local="clr-namespace:Inevent.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -14,8 +12,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.RowSpan="2">
-            <Label Content="Nadchodzące wydarzenia" Background="{x:Null}" FontSize="18" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="ExtraBold"></Label>
-            <ListBox Name="Upcoming" Height="395.2" Background="{x:Null}" BorderBrush="{x:Null}">
+            <Label Content="Wydarzenia z tagiem" Background="{x:Null}" FontSize="18" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="ExtraBold"></Label>
+            <ListBox Name="EventsList" Height="395.2" Background="{x:Null}" BorderBrush="{x:Null}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

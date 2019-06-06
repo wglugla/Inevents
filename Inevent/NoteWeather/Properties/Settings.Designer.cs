@@ -58,5 +58,17 @@ namespace Inevent.Properties {
                 this["currentEvent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int currentTag {
+            get {
+                return ((int)(this["currentTag"]));
+            }
+            set {
+                this["currentTag"] = value;
+            }
+        }
     }
 }

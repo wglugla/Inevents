@@ -64,10 +64,13 @@
     <Compile Include="Login.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\LoginResponse.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Tags.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="ViewModels\DashboardModel.cs" />
     <Compile Include="ViewModels\EventInfoModel.cs" />
+    <Compile Include="ViewModels\EventsByTagModel.cs" />
     <Compile Include="ViewModels\HomeModel.cs" />
     <Compile Include="ViewModels\MainModel.cs" />
     <Compile Include="Views\DashboardView.xaml.cs">
@@ -76,11 +79,11 @@
     <Compile Include="Views\EventInfo.xaml.cs">
       <DependentUpon>EventInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EventsByTagView.xaml.cs">
+      <DependentUpon>EventsByTagView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -106,11 +109,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeView.xaml">
+    <Page Include="Views\EventsByTagView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Views\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\avatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loginPhoto.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

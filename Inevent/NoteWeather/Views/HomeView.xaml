@@ -29,13 +29,31 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,0,0">
-                <Button Width="Auto" Content="Panel główny" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Margin="0,0,0,10" Click="Dashboard_click"/>
-                <Button Width="Auto" Content="Twoje wydarzenia" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10"/>
-                <Button Width="Auto" Content="Wybrane przez ciebie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-                <Button Width="Auto" Content="Edytuj profil" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            </StackPanel>
-            <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding}">
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,0,0">
+                    <Button Width="Auto" Content="Panel główny" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Margin="0,0,0,10" Click="Dashboard_click"/>
+                    <Button Width="Auto" Content="Twoje wydarzenia" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10"/>
+                    <Button Width="Auto" Content="Wybrane przez ciebie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+                    <Button Width="Auto" Content="Edytuj profil" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Twoje ulubione tagi"/>
+                    <ListBox HorizontalContentAlignment="Stretch" Name="Favourites" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Button HorizontalContentAlignment="Left" Content="{Binding Value}" Tag="{Binding Id}" Style="{StaticResource tagButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0F0F0F" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" Click="TagButton_click" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+            <ContentControl Name="Control" Grid.Row="1" Grid.Column="1" Content="{Binding}">
                 
             </ContentControl>
             <Grid Grid.Row="1" Grid.Column="2">
@@ -55,10 +73,19 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Content="Today" />
-                    <Button Grid.Row="0" Grid.Column="1" Content="Tomorrow" />
-                    <Button Grid.Row="1" Grid.Column="0" Content="This week" />
-                    <Button Grid.Row="1" Grid.Column="1" Content="Choose data" />
+                    <Button Grid.Row="0" Grid.Column="0" Content="Dzisiaj" Foreground="White" Background="#FF0092D3" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" BorderBrush="White" FontSize="10" BorderThickness="3" />
+                    <Button Grid.Row="0" Grid.Column="1" Content="Jutro" BorderBrush="White" Foreground="White" Background="#FFF3B007" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" FontSize="10" BorderThickness="3" />
+                    <Button Grid.Row="1" Grid.Column="0" Content="W tym tygodniu" Background="#FF9557ED" BorderBrush="White" Foreground="White" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" FontSize="10" BorderThickness="3" />
+                    <Button Grid.Row="1" Grid.Column="1" Content="Wybierz datę" Foreground="White" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" BorderBrush="White" Background="#FFBABABA" FontSize="10" BorderThickness="3" />
+                </Grid>
+                <Grid Grid.Row="1" Background="White" Grid.RowSpan="2">
+                    <ListBox HorizontalContentAlignment="Stretch" Name="AllTags" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Button HorizontalContentAlignment="Left" Content="{Binding Value}" Tag="{Binding Id}" Style="{StaticResource tagButton}" MinHeight="0" Width="Auto" BorderBrush="{x:Null}" Background="White" Foreground="#FF404040" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" Click="TagButton_click" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </Grid>
         </Grid>

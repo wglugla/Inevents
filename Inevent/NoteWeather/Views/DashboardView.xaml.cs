@@ -28,24 +28,8 @@ namespace Inevent.Views
         public DashboardView()
         {
             InitializeComponent();
-            LoadUserData();
             LoadEvents();
             UserID = Properties.Settings.Default.id;
-        }
-
-        private async void LoadUserData()
-        {
-            Users user = new Users();
-            try
-            {
-                User req = new User();
-                req = await user.LoadUser();
-                Username.Content = "Cześć, " + req.Username + "!";
-            }
-            catch (Exception e)
-            {
-                Username.Content = "Error" + e;
-            }
         }
 
         
@@ -66,17 +50,13 @@ namespace Inevent.Views
                 signedEvents = await Events.LoadSigned(Properties.Settings.Default.id);
                 Event[] upcomingEvents = await Events.LoadEvents();
                 int[] signedIds = signedEvents.Select(p => p.Id).ToArray();
-                //foreach(Event ev in upcomingEvents)
-                //{
-                //    if (ifSigned(ev.Id, signedIds) == true)
-                //    {
-                //        ev.Joined = true;
-                //    }
-                //    else
-                //    {
-                //        ev.Joined = false;
-                //    }
-                //}
+                foreach (Event ev in upcomingEvents)
+                {
+                    ev.FormatedDate = DateTime.Now.ToString("dddd, dd MMMM yyyy");
+                    ev.FormatedDay = DateTime.Now.ToString("dd");
+                    ev.FormatedDayName = DateTime.Now.ToString("dddd").Substring(0, 3).ToUpper();
+
+                }
                 Upcoming.ItemsSource = upcomingEvents;
             }
             catch(Exception e)
@@ -101,6 +81,11 @@ namespace Inevent.Views
         void DashboardButton_click(object sender, EventArgs e)
         {
             Content = new DashboardModel();
+        }
+
+        void Test_click(object sender, EventArgs e)
+        {
+            MessageBox.Show("JEST");
         }
     }
 }

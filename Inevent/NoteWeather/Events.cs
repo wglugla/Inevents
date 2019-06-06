@@ -102,6 +102,28 @@ namespace Inevent
             }
         }
 
+        public static async Task<Event[]> FindEventByTag(int tagId)
+        {
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/events/tag/" + tagId);
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Event[] jsonObject = JsonConvert.DeserializeObject<Event[]>(result);
+                    return jsonObject;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public static async Task<bool> AddMember(int eventId, int userId)
         {
             object data = new
