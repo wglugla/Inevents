@@ -23,6 +23,7 @@ namespace Inevent.Views
     public partial class EventInfo : UserControl
     {
         private List<int> signedId = new List<int>();
+        private bool signed = false;
         public EventInfo()
         {
             InitializeComponent();
@@ -33,10 +34,22 @@ namespace Inevent.Views
         {
             try
             {
-
-            signedId = await Events.LoadSignedId(Properties.Settings.Default.id);
-            Event[] current = await Events.LoadEvent(Properties.Settings.Default.currentEvent);
-            Info.ItemsSource = current;
+                signedId = await Events.LoadSignedId(Properties.Settings.Default.id);
+                Event[] current = await Events.LoadEvent(Properties.Settings.Default.currentEvent);
+                Info.ItemsSource = current;
+                int[] ids = signedId.ToArray();
+                if (ids.Contains(current[0].Id))
+                {
+                    signed = true;
+                    Signed.Content = "Bierzesz udział";
+                    SignedToggler.Content = "Opuść wydarzenie";
+                }
+                else
+                {
+                    signed = false;
+                    Signed.Content = "Nie bierzesz udziału";
+                    SignedToggler.Content = "Weź udział";
+                }
             }
             catch (Exception e)
             {
@@ -44,8 +57,29 @@ namespace Inevent.Views
             }
         }
 
-        void DashboardButton_click(object sender, EventArgs e)
+        public void DashboardButton_click(object sender, EventArgs e)
         {
+            Content = new DashboardModel();
+        }
+
+        public async void SignedToggler_click(object sender, EventArgs e)
+        {
+            bool success;
+            try
+            {
+                if (signed == true)
+                {
+                    success = await Events.RemoveMember(Properties.Settings.Default.currentEvent, Properties.Settings.Default.id);
+                }
+                else
+                {
+                    success = await Events.AddMember(Properties.Settings.Default.currentEvent, Properties.Settings.Default.id);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             Content = new DashboardModel();
         }
     }
