@@ -58,5 +58,10 @@ namespace Inevent.Views
             Control.DataContext = x;
             x.Refresh();
         }
+
+        private void EditProfile_Click(object sender, RoutedEventArgs e)
+        {
+           DataContext = new EditProfileModel();
+        }
     }
 }

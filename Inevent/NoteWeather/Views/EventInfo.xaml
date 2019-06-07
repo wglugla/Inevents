@@ -15,25 +15,6 @@
             <RowDefinition Height="104*"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="0,0,0,22.6" Grid.RowSpan="3">
-            <!--<ListBox x:Name="Info" Height="92.8" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,10,0,44.8" Grid.RowSpan="3">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="Wtorek"/>
-                                    <TextBlock Text="{Binding EventDate}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Title}" />
-                                    <TextBlock Text="{Binding EventDate}" />
-                                    <TextBlock Text="{Binding Place}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>-->
             <ListBox x:Name="Info" Height="Auto" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,10,0,44.8" Grid.RowSpan="3">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
