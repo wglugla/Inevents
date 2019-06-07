@@ -41,13 +41,11 @@ namespace Inevent.Views
                 if (ids.Contains(current[0].Id))
                 {
                     signed = true;
-                    Signed.Content = "Bierzesz udział";
                     SignedToggler.Content = "Opuść wydarzenie";
                 }
                 else
                 {
                     signed = false;
-                    Signed.Content = "Nie bierzesz udziału";
                     SignedToggler.Content = "Weź udział";
                 }
             }
