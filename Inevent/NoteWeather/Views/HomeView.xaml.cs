@@ -22,6 +22,7 @@ namespace Inevent.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
+        private Tag[] favourites;
         public HomeView()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace Inevent.Views
             {
                 Tag[] req = await Tags.GetAllTags();
                 AllTags.ItemsSource = req;
-                Tag[] favourites = await Tags.GetUserTags(Properties.Settings.Default.id);
+                favourites = await Tags.GetUserTags(Properties.Settings.Default.id);
                 Favourites.ItemsSource = favourites;
             }
             catch (Exception e)
@@ -62,6 +63,11 @@ namespace Inevent.Views
         private void EditProfile_Click(object sender, RoutedEventArgs e)
         {
            DataContext = new EditProfileModel();
+        }
+
+        public void Refresh()
+        {
+            LoadTags();
         }
     }
 }

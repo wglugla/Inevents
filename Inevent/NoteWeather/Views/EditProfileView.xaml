@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Inevent.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+    <Grid Name="Container" Background="White">
         <Grid Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -20,11 +20,11 @@
             <ListBox Grid.Row="1" x:Name="TagList" Margin="20,0,0,0" VerticalAlignment="Top">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding Value}" Tag="{Binding Tag}" IsChecked="{Binding IsChecked}"/>
+                        <CheckBox Content="{Binding Value}" Tag="{Binding Id}" IsChecked="{Binding IsChecked}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Grid.Row="2"  Content="Zatwierdź" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" />
+            <Button Grid.Row="2"  Content="Zatwierdź" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Click="Submit_Click" />
         </Grid>
     </Grid>
 </UserControl>

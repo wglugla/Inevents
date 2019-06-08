@@ -1,4 +1,5 @@
 ﻿using Inevent.Models;
+using Inevent.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Inevent.Views
     /// </summary>
     public partial class EditProfileView : UserControl
     {
+        private Tag[] tags;
         public EditProfileView()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace Inevent.Views
 
         public async void LoadTags()
         {
-            Tag[] tags = await Tags.GetAllTags();
+            tags = await Tags.GetAllTags();
             Tag[] usertags = await Tags.GetUserTags(Properties.Settings.Default.id);
             foreach(Tag tag in tags)
             {
@@ -43,6 +45,19 @@ namespace Inevent.Views
                 }
             }
             TagList.ItemsSource = tags;
+        }
+
+        public async void UpdateTags(int[] tagsIds)
+        {
+            Users user = new Users();
+            bool result = await user.ChangeUserTags(Properties.Settings.Default.id, tagsIds);
+        }
+
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            int[] list = tags.Where(p => p.IsChecked == true).Select(p => p.Id).ToArray();
+            UpdateTags(list);
+            Application.Current.MainWindow.Content = new HomeView();
         }
     }
 }

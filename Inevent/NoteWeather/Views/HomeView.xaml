@@ -41,12 +41,12 @@
                     <Button Width="Auto" Content="Edytuj profil" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10" Click="EditProfile_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    <TextBlock Text="Twoje ulubione tagi"/>
+                    <TextBlock Text="Twoje ulubione tagi" Margin="15,0,0,0" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="16" FontWeight="Bold"/>
                     <ListBox HorizontalContentAlignment="Stretch" Name="Favourites" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Button HorizontalContentAlignment="Left" Content="{Binding Value}" Tag="{Binding Id}" Style="{StaticResource tagButton}"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0F0F0F" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" Click="TagButton_click" />
+                                    <Button HorizontalContentAlignment="Left" Content="{Binding Value}" Tag="{Binding Id}" Style="{StaticResource tagButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0F0F0F" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" Click="TagButton_click" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
