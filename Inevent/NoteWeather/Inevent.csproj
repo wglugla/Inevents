@@ -84,6 +84,7 @@
     <Compile Include="Tags.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="ViewModels\DashboardModel.cs" />
+    <Compile Include="ViewModels\EditEventModel.cs" />
     <Compile Include="ViewModels\EditProfileModel.cs" />
     <Compile Include="ViewModels\EventCreatorModel.cs" />
     <Compile Include="ViewModels\EventInfoModel.cs" />
@@ -92,6 +93,9 @@
     <Compile Include="ViewModels\MainModel.cs" />
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditEventView.xaml.cs">
+      <DependentUpon>EditEventView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditProfileView.xaml.cs">
       <DependentUpon>EditProfileView.xaml</DependentUpon>
@@ -125,6 +129,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditEventView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

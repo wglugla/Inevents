@@ -85,7 +85,7 @@ namespace Inevent.Views
 
         public void eventEditButton_click(object sender, EventArgs e)
         {
-            MessageBox.Show("EDIT");
+            Content = new EditEventModel();
         }
         public async void eventDeleteButton_click(object sender, EventArgs e)
         {

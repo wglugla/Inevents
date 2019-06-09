@@ -25,7 +25,7 @@ namespace Inevent.Elements
             Title = ev.Title;
             Place = ev.Place;
             Description = ev.Description;
-            EventDate = ev.EventDate;
+            EventDate = ev.Date;
         }
 
         public StackPanel CreateElement()

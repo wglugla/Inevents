@@ -11,7 +11,7 @@ namespace Inevent.Models
         public int Id { get; set; }
         public int OwnerId { get; set; }
         public string Title { get; set; }
-        public DateTime EventDate { get; set; }
+        public DateTime Date { get; set; }
         public string Place { get; set; }
         public string Description { get; set; }
         public string[] Tags { get; set; }

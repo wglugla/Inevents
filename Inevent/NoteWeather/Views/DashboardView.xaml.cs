@@ -52,9 +52,9 @@ namespace Inevent.Views
                 int[] signedIds = signedEvents.Select(p => p.Id).ToArray();
                 foreach (Event ev in upcomingEvents)
                 {
-                    ev.FormatedDate = DateTime.Now.ToString("dddd, dd MMMM yyyy");
-                    ev.FormatedDay = DateTime.Now.ToString("dd");
-                    ev.FormatedDayName = DateTime.Now.ToString("dddd").Substring(0, 3).ToUpper();
+                    ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy");
+                    ev.FormatedDay = ev.Date.ToString("dd");
+                    ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
 
                 }
                 Upcoming.ItemsSource = upcomingEvents;
