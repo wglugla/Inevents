@@ -42,6 +42,10 @@ namespace Inevent.Views
             {
                 signedId = await Events.LoadSignedId(Properties.Settings.Default.id);
                 Event[] current = await Events.LoadEvent(Properties.Settings.Default.currentEvent);
+                if (current[0].Tags.Length <= 0)
+                {
+                    IfEmpty.Text = "Brak tagów przypisanych do tego wydarzenia.";
+                }
                 Info.ItemsSource = current;
                 int[] ids = signedId.ToArray();
                 if (ids.Contains(current[0].Id))

@@ -171,7 +171,7 @@ namespace Inevent
             }
         }
 
-        public static async Task<int> CreateEvent(int ownerId, string title, string place, string date, string description )
+        public static async Task<int> CreateEvent(int ownerId, string title, string place, string date, string description)
         {
             object obj = new
             {
@@ -231,6 +231,38 @@ namespace Inevent
             try
             {
                 HttpResponseMessage response = await ApiHelper.ApiClient.PutAsync("http://localhost:5000/api/events/" + eventId + "/tags", content);
+                int code = (int)response.StatusCode;
+                if (code >= 200 && code < 300)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static async Task<bool> UpdateEvent(int id, int ownerId, string title, string place, string date, string description)
+        {
+            object obj = new
+            {
+                id,
+                ownerId,
+                title,
+                date,
+                place,
+                description
+            };
+            var json = JsonConvert.SerializeObject(obj);
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.PutAsync("http://localhost:5000/api/events/" + id, content);
                 int code = (int)response.StatusCode;
                 if (code >= 200 && code < 300)
                 {

@@ -52,12 +52,19 @@ namespace Inevent.Views
                 int[] signedIds = signedEvents.Select(p => p.Id).ToArray();
                 foreach (Event ev in upcomingEvents)
                 {
-                    ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy");
+                    ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
                     ev.FormatedDay = ev.Date.ToString("dd");
                     ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
 
                 }
-                Upcoming.ItemsSource = upcomingEvents;
+                if (upcomingEvents.Length > 0)
+                {
+                    Upcoming.ItemsSource = upcomingEvents;
+                }
+                else
+                {
+                    IfEmpty.Text = "Brak nadchodzących wydarzeń";
+                }
             }
             catch(Exception e)
             {

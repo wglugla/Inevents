@@ -37,7 +37,14 @@ namespace Inevent.Views
                 Tag[] req = await Tags.GetAllTags();
                 AllTags.ItemsSource = req;
                 favourites = await Tags.GetUserTags(Properties.Settings.Default.id);
-                Favourites.ItemsSource = favourites;
+                if (favourites.Length > 0 )
+                {
+                    Favourites.ItemsSource = favourites;
+                }
+                else
+                {
+                    IfEmpty.Text = "Nie wybrałeś ulubionych tagów. Edytuj profil, aby to zrobić!";
+                }
             }
             catch (Exception e)
             {
