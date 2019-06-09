@@ -224,5 +224,28 @@ namespace Inevent
             }
         }
 
+        public static async Task<bool> ChangeEventTags(int eventId, int[] tagsIds)
+        {
+            var json = JsonConvert.SerializeObject(tagsIds);
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.PutAsync("http://localhost:5000/api/events/" + eventId + "/tags", content);
+                int code = (int)response.StatusCode;
+                if (code >= 200 && code < 300)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

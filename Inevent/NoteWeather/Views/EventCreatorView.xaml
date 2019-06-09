@@ -20,19 +20,18 @@
                     <Label Content="Miejsce wydarzenia" Margin="0,20,0,0"/>
                     <TextBox x:Name="PlaceBox" Style="{StaticResource formInput}"/>
                     <Label Content="Data wydarzenia" Margin="0,20,0,0"/>
-                    <!--<DatePicker x:Name="DateBox" Text="{Binding StringFormat=DD/MM/YYYY}" SelectedDate="{x:Static sys:DateTime.Now}" DisplayDateStart="{x:Static sys:DateTime.Now}">
-                        <DatePicker.Resources>
-                            <Style TargetType="{x:Type DatePickerTextBox}">
-                                <Setter Property="IsReadOnly" Value="True"/>
-                            </Style>
-                        </DatePicker.Resources>
-                    </DatePicker>-->
-                    <!-- DefaultValue="{x:Static sys:DateTime.Now}" Minimum="{x:Static sys:DateTime.Now}" DisplayDefaultValueOnEmptyText="True" -->
                     <xctk:DateTimePicker x:Name="DateBox" >
                     
                     </xctk:DateTimePicker>
                     <Label Content="Opis wydarzenia" Margin="0,20,0,0" />
                     <TextBox x:Name="DescriptionBox" Style="{StaticResource formInput}" Height="93.68"/>
+                    <ListBox x:Name="TagList" Margin="20,0,0,0" VerticalAlignment="Top">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Value}" Tag="{Binding Id}" IsChecked="{Binding IsChecked}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <Button Content="Utwórz wydarzenie" Click="CreateEvent_click"/>
  
                 </StackPanel>

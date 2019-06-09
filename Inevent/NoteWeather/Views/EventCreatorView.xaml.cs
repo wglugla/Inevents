@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inevent.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,10 +27,25 @@ namespace Inevent.Views
         private string eventDate;
         private string description;
 
+        private Tag[] tags;
+
         public EventCreatorView()
         {
             InitializeComponent();
+            LoadTags();
         }
+
+        public async void LoadTags()
+        {
+            tags = await Tags.GetAllTags();
+            TagList.ItemsSource = tags;
+        }
+
+        public async void AddTagsToEvent(int eventId, int[] tagsIds)
+        {
+            bool result = await Events.ChangeEventTags(eventId, tagsIds);
+        }
+
 
         private async void CreateEvent_click(object sender, RoutedEventArgs e)
         {
@@ -45,6 +61,8 @@ namespace Inevent.Views
                 newEventId = await Events.CreateEvent(ownerId, title, place, eventDate, description);
                 if (newEventId != 0)
                 {
+                    int[] list = tags.Where(p => p.IsChecked == true).Select(p => p.Id).ToArray();
+                    AddTagsToEvent(newEventId, list);
                     Application.Current.MainWindow.Content = new HomeView();
                 }
                 else
