@@ -14,7 +14,7 @@
             <RowDefinition Height="251*"/>
             <RowDefinition Height="104*"/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="0,0,0,22.6" Grid.RowSpan="3">
+        <StackPanel x:Name="MainStackPanel" Margin="0,0,0,22.6" Grid.RowSpan="3">
             <ListBox x:Name="Info" Height="Auto" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,10,0,44.8" Grid.RowSpan="3">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -37,8 +37,8 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <StackPanel Orientation="Horizontal" Height="39.027">
-                <Button x:Name="SignedToggler" Content="Weź udział" Tag="{Binding Id}" Margin="0,0,0,10" Width="106.913" Click="SignedToggler_click"/>
+            <StackPanel x:Name="ButtonsStackPanel"  Orientation="Vertical" HorizontalAlignment="Left">
+                <Button x:Name="SignedToggler" Content="Weź udział" Tag="{Binding Id}" Margin="10,10,10,0" Width="150" Click="SignedToggler_click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

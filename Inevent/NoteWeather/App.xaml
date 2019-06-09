@@ -32,5 +32,13 @@
         <Style x:Key="test" TargetType="ListBoxItem">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
+        <Style x:Key="WinAll" TargetType="{x:Type Window}">
+            <Setter Property="FontFamily"
+                Value="Comic Sans MS" />
+        </Style>
+        <Style x:Key="All" TargetType="{x:Type UserControl}">
+            <Setter Property="FontFamily"
+                Value="Open Sans" />
+        </Style>
     </Application.Resources>
 </Application>

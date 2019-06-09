@@ -24,10 +24,16 @@ namespace Inevent.Views
     {
         private List<int> signedId = new List<int>();
         private bool signed = false;
+        private int currentEventId;
         public EventInfo()
         {
             InitializeComponent();
             Load();
+        }
+
+        public bool CheckIfOwner(int ownerId)
+        {
+            return ownerId == Properties.Settings.Default.id;
         }
 
         public async void Load()
@@ -48,12 +54,52 @@ namespace Inevent.Views
                     signed = false;
                     SignedToggler.Content = "Weź udział";
                 }
+                if (CheckIfOwner(current[0].OwnerId))
+                {
+                    currentEventId = current[0].Id;
+                    Button eventEditButton = new Button()
+                    {
+                        Content = "Edytuj wydarzenie",
+                        Width = 150,
+                        Margin = new Thickness(10, 10, 10, 0)
+
+                    };
+                    Button eventDeleteButton = new Button()
+                    {
+                        Content = "Usuń wydarzenie",
+                        Width = 150,
+                        Margin = new Thickness(10, 10, 10, 0)
+                    };
+                    eventEditButton.Click += eventEditButton_click;
+                    eventDeleteButton.Click += eventDeleteButton_click;
+
+                    ButtonsStackPanel.Children.Add(eventEditButton);
+                    ButtonsStackPanel.Children.Add(eventDeleteButton);
+                }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
         }
+
+        public void eventEditButton_click(object sender, EventArgs e)
+        {
+            MessageBox.Show("EDIT");
+        }
+        public async void eventDeleteButton_click(object sender, EventArgs e)
+        {
+            bool success = await Events.DeleteEvent(currentEventId);
+            if (success)
+            {
+                Content = new DashboardModel();
+            }
+            else
+            {
+                MessageBox.Show("Fail");
+            }
+        }
+
 
         public void DashboardButton_click(object sender, EventArgs e)
         {

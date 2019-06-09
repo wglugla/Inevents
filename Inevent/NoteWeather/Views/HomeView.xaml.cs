@@ -69,5 +69,10 @@ namespace Inevent.Views
         {
             LoadTags();
         }
+
+        private void CreateEvent_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new EventCreatorModel();
+        }
     }
 }

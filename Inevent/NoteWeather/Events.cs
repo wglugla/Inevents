@@ -171,5 +171,58 @@ namespace Inevent
             }
         }
 
+        public static async Task<int> CreateEvent(int ownerId, string title, string place, string date, string description )
+        {
+            object obj = new
+            {
+                ownerId,
+                title,
+                place,
+                date,
+                description
+            };
+            var json = JsonConvert.SerializeObject(obj);
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync("http://localhost:5000/api/events", content);
+                int code = (int)response.StatusCode;
+                if (code >= 200 && code < 300)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Event jsonObject = JsonConvert.DeserializeObject<Event>(result);
+                    return jsonObject.Id;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static async Task<bool> DeleteEvent(int eventId)
+        {
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync("http://localhost:5000/api/events/" + eventId);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

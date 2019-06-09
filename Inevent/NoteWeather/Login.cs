@@ -16,8 +16,8 @@ namespace Inevent
         {
             object data = new
             {
-                username = username,
-                password = password
+                username,
+                password
             };
 
             var json = JsonConvert.SerializeObject(data);
