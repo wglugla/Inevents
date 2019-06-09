@@ -36,6 +36,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,0,0">
                     <Button Width="Auto" Content="Panel główny" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Margin="0,0,0,10" Click="Dashboard_click"/>
+                    <Button Width="Auto" Content="Utwórz wydarzenie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10" Click="CreateEvent_Click"/>
                     <Button Width="Auto" Content="Twoje wydarzenia" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10"/>
                     <Button Width="Auto" Content="Wybrane przez ciebie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
                     <Button Width="Auto" Content="Edytuj profil" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10" Click="EditProfile_Click"/>
