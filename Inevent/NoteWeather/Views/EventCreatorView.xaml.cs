@@ -39,23 +39,12 @@ namespace Inevent.Views
             DateTime? selectedDate = DateBox.Value;
             eventDate = selectedDate.Value.ToString("yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture);
             description = DescriptionBox.Text;
-<<<<<<< HEAD
             int newEventId = 0;
             try
             {
                 newEventId = await Events.CreateEvent(ownerId, title, place, eventDate, description);
                 if (newEventId != 0)
                 {
-
-
-=======
-            bool success = false;
-            try
-            {
-                success = await Events.CreateEvent(ownerId, title, place, eventDate, description);
-                if (success == true)
-                {
->>>>>>> 36d3bc9c2767e2630d25128d85115978ba198327
                     Application.Current.MainWindow.Content = new HomeView();
                 }
                 else
