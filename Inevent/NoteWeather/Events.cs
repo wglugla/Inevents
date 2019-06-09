@@ -171,7 +171,11 @@ namespace Inevent
             }
         }
 
+<<<<<<< HEAD
         public static async Task<int> CreateEvent(int ownerId, string title, string place, string date, string description )
+=======
+        public static async Task<bool> CreateEvent(int ownerId, string title, string place, string date, string description )
+>>>>>>> 36d3bc9c2767e2630d25128d85115978ba198327
         {
             object obj = new
             {
@@ -189,6 +193,7 @@ namespace Inevent
                 int code = (int)response.StatusCode;
                 if (code >= 200 && code < 300)
                 {
+<<<<<<< HEAD
                     string result = await response.Content.ReadAsStringAsync();
                     Event jsonObject = JsonConvert.DeserializeObject<Event>(result);
                     return jsonObject.Id;
@@ -211,6 +216,8 @@ namespace Inevent
                 HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync("http://localhost:5000/api/events/" + eventId);
                 if (response.IsSuccessStatusCode)
                 {
+=======
+>>>>>>> 36d3bc9c2767e2630d25128d85115978ba198327
                     return true;
                 }
                 else
@@ -220,7 +227,11 @@ namespace Inevent
             }
             catch (Exception e)
             {
+<<<<<<< HEAD
                 throw e;
+=======
+                throw new Exception("Blad!" + e);
+>>>>>>> 36d3bc9c2767e2630d25128d85115978ba198327
             }
         }
 
