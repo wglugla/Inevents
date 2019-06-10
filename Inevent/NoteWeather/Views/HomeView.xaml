@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Style="{StaticResource All}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#FFFCFBFE" RenderTransformOrigin="0.417,0.527">
+    <Grid Background="#FCFBFE">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -30,62 +30,50 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Row="1" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,0,0">
-                    <Button Width="Auto" Content="Panel główny" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Margin="0,0,0,10" Click="Dashboard_click"/>
-                    <Button Width="Auto" Content="Utwórz wydarzenie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10" Click="CreateEvent_Click"/>
-                    <Button Width="Auto" Content="Twoje wydarzenia" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,0,10"/>
-                    <Button Width="Auto" Content="Wybrane przez ciebie" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-                    <Button Width="Auto" Content="Edytuj profil" FontSize="14" FontFamily="/Inevent;component/Fonts/#Open Sans" HorizontalContentAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10" Click="EditProfile_Click"/>
-                </StackPanel>
-                <StackPanel Grid.Row="1">
-                    <TextBlock Text="Twoje ulubione tagi" Margin="15,0,0,0" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="16" FontWeight="Bold"/>
-                    <TextBlock x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
-                    <ListBox HorizontalContentAlignment="Stretch" Name="Favourites" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <Button HorizontalContentAlignment="Left" Content="{Binding Value}" Tag="{Binding Id}" Style="{StaticResource tagButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0F0F0F" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" Click="TagButton_click" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-            </Grid>
+            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Grid.RowSpan="2" >
+
+                <Grid Grid.Row="1" Grid.Column="0" >
+                    <StackPanel Background="White">
+                        <Label Content="MENU" Margin="5,10,0,0" FontWeight="Bold" Background="{x:Null}" Foreground="#FF716F6F" />
+                        <StackPanel Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.RowSpan="2" Margin="0,10,0,0">
+                            <Button Width="Auto" Content="Panel główny" FontSize="14"  Click="Dashboard_click"/>
+                            <Button Width="Auto" Content="Utwórz wydarzenie" FontSize="14"  Click="CreateEvent_Click"/>
+                            <Button Width="Auto" Content="Twoje wydarzenia" FontSize="14" Click="Created_Click" />
+                            <Button Width="Auto" Content="Wybrane przez ciebie" FontSize="14" Click="Signed_Click"/>
+                            <Button Width="Auto" Content="Wybrane dla ciebie" FontSize="14" Click="Matched_Click"/>
+                            <Button Width="Auto" Content="Edytuj profil" FontSize="14" Click="EditProfile_Click"/>
+                        </StackPanel>
+                        <StackPanel Margin="-5,0,0,0">
+                            <TextBlock Text="ULUBIONE TAGI" Margin="10,25,0,0" Foreground="#FF767676" FontWeight="Bold"/>
+                            <TextBlock x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
+                            <ListBox HorizontalContentAlignment="Stretch" Name="Favourites" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Content="{Binding Value}" Tag="{Binding Id}" Click="TagButton_click" FontSize="14" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
             <ContentControl Name="Control" Grid.Row="1" Grid.Column="1" Content="{Binding}">
                 
             </ContentControl>
-            <Grid Grid.Row="1" Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="2" Background="White">
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                
-                <!--Sekcja today/tomorrow/this week/choose data-->
-                <Grid Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Content="Dzisiaj" Foreground="White" Background="#FF0092D3" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" BorderBrush="White" FontSize="10" BorderThickness="3" />
-                    <Button Grid.Row="0" Grid.Column="1" Content="Jutro" BorderBrush="White" Foreground="White" Background="#FFF3B007" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" FontSize="10" BorderThickness="3" />
-                    <Button Grid.Row="1" Grid.Column="0" Content="W tym tygodniu" Background="#FF9557ED" BorderBrush="White" Foreground="White" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" FontSize="10" BorderThickness="3" />
-                    <Button Grid.Row="1" Grid.Column="1" Content="Wybierz datę" Foreground="White" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" BorderBrush="White" Background="#FFBABABA" FontSize="10" BorderThickness="3" />
-                </Grid>
+
+                <Label Padding="15" Grid.Row="0" Content="Odkrywaj" FontSize="18" FontWeight="Medium" Margin="0,5,0,0" />
                 <Grid Grid.Row="1" Background="White" Grid.RowSpan="2">
                     <ListBox HorizontalContentAlignment="Stretch" Name="AllTags" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Button HorizontalContentAlignment="Left" Content="{Binding Value}" Tag="{Binding Id}" Style="{StaticResource tagButton}" MinHeight="0" Width="Auto" BorderBrush="{x:Null}" Background="White" Foreground="#FF404040" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" Click="TagButton_click" />
+                                <Button Content="{Binding Value}" Tag="{Binding Id}" Click="TagButton_click" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

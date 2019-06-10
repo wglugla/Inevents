@@ -40,7 +40,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <StackPanel x:Name="ButtonsStackPanel"  Orientation="Vertical" HorizontalAlignment="Left">
-                <Button x:Name="SignedToggler" Content="Weź udział" Tag="{Binding Id}" Margin="10,10,10,0" Width="150" Click="SignedToggler_click"/>
+                <Button x:Name="SignedToggler" Content="Weź udział" Style="{StaticResource agreeButton}" Tag="{Binding Id}" Margin="10,10,10,0" Width="150" Click="SignedToggler_click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

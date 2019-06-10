@@ -81,5 +81,19 @@ namespace Inevent.Views
         {
             DataContext = new EventCreatorModel();
         }
+
+        private void Created_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new CreatedEventsModel();
+        }
+
+        private void Signed_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new SignedEventsModel();
+        }
+        private void Matched_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new MatchedEventsModel();
+        }
     }
 }

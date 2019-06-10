@@ -18,5 +18,7 @@ namespace Inevent.Models
         public string FormatedDate { get; set; }
         public string FormatedDay { get; set; }
         public string FormatedDayName { get; set; }
+        public double MatchedValue { get; set; }
+        public string Countdown { get; set; }
     }
 }

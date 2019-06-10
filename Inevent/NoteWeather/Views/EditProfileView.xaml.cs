@@ -47,16 +47,12 @@ namespace Inevent.Views
             TagList.ItemsSource = tags;
         }
 
-        public async void UpdateTags(int[] tagsIds)
-        {
-            Users user = new Users();
-            bool result = await user.ChangeUserTags(Properties.Settings.Default.id, tagsIds);
-        }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+
+        private async void Submit_Click(object sender, RoutedEventArgs e)
         {
             int[] list = tags.Where(p => p.IsChecked == true).Select(p => p.Id).ToArray();
-            UpdateTags(list);
+            await Users.ChangeUserTags(Properties.Settings.Default.id, list);
             Application.Current.MainWindow.Content = new HomeView();
         }
     }

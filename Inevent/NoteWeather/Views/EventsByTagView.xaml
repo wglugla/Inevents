@@ -7,39 +7,47 @@
              mc:Ignorable="d" 
              Style="{StaticResource All}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#FFFCFBFE" RenderTransformOrigin="0.417,0.527">
+    <Grid Margin="0,15,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.RowSpan="2">
-            <Label Content="Wydarzenia z tagiem" Background="{x:Null}" FontSize="18" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="ExtraBold"></Label>
-            <ListBox Name="EventsList" Height="395.2" Background="{x:Null}" BorderBrush="{x:Null}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Padding="18">
-                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding FormatedDayName}" TextAlignment="Center" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="12" />
-                                        <TextBlock Text="{Binding FormatedDay}" TextAlignment="Center" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="20" />
+        
+        <ScrollViewer HorizontalScrollBarVisibility="Visible"  Grid.RowSpan="2">
+            <StackPanel Background="White" Orientation="Vertical" Grid.RowSpan="2" Margin="15,5,15,15">
+                <Label Padding="15" Content="Wydarzenia związane z tagiem" Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
+                <TextBlock x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
+                <ListBox Name="EventsList" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="#FFEAEAEA" >
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Padding="18">
+                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding FormatedDayName}" TextAlignment="Center" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="12" />
+                                                <TextBlock Text="{Binding FormatedDay}" TextAlignment="Center" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="20" />
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Padding="18">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="{Binding Title}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="Bold" FontSize="16" />
+                                                <TextBlock Text="{Binding FormatedDate}" FontSize="12" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" />
+                                                <TextBlock Text="{Binding Place}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="Light" />
+                                                <TextBlock Text="Pozostały czas: " />
+                                                <TextBlock Text="{Binding Countdown}" />
+                                            </StackPanel>
+                                        </Border>
                                     </StackPanel>
-                                </Border>
-                                <Border Padding="18">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="{Binding Title}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="Bold" FontSize="16" />
-                                        <TextBlock Text="{Binding FormatedDate}" FontSize="12" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" />
-                                        <TextBlock Text="{Binding Place}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="Light" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Szczegóły" Tag="{Binding Id}" Style="{StaticResource agreeButton}" Click="JoinButton_click" />
                                     </StackPanel>
-                                </Border>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Szczegóły" Tag="{Binding Id}" Style="{StaticResource styledButton}" Click="JoinButton_click" Background="{x:Null}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="12" FontWeight="SemiBold" BorderBrush="#33707070" BorderThickness="2"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

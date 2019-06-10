@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Inevent
 {
-    class Users
+    public static class Users
     {
-        public async Task<object> LoadUsers()
+        public static async Task<object> LoadUsers()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Inevent
             }
         }
 
-        public async Task<User> LoadUser()
+        public static async Task<User> LoadUser()
         {
             int userId = Properties.Settings.Default.id;
             try
@@ -60,7 +60,7 @@ namespace Inevent
             }
         }
 
-        public async Task<bool> ChangeUserTags(int userId, int[] tagsIds)
+        public static async Task<bool> ChangeUserTags(int userId, int[] tagsIds)
         {
             var json = JsonConvert.SerializeObject(tagsIds);
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
@@ -71,6 +71,28 @@ namespace Inevent
                 if (code >= 200 && code < 300)
                 {
                     return true;
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static async Task<Event[]> GetCreatedEvents(int userId)
+        {
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/users/" + userId + "/created");
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Event[] jsonObject = JsonConvert.DeserializeObject<Event[]>(result);
+                    return jsonObject;
                 }
                 else
                 {

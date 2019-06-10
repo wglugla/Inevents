@@ -1,10 +1,8 @@
-﻿<UserControl x:Class="Inevent.Views.DashboardView"
+﻿<UserControl x:Class="Inevent.Views.CreatedEventsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:viewmodels="clr-namespace:Inevent.ViewModels"
-             xmlns:views="clr-namespace:Inevent.Views"
              xmlns:local="clr-namespace:Inevent.Views"
              mc:Ignorable="d" 
              Style="{StaticResource All}"
@@ -15,19 +13,20 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <ScrollViewer HorizontalScrollBarVisibility="Visible"  Grid.RowSpan="2">
-            <StackPanel Background="White" Orientation="Vertical" Margin="15,5,15,15">
-                <Label Padding="15" Content="Nadchodzące wydarzenia" Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
+
+            <StackPanel Background="White" Margin="15,5,15,15" Orientation="Vertical" Grid.RowSpan="2">
+                <Label Padding="15" Content="Utworzone przez Ciebie: " Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
                 <TextBlock x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
-                <ListBox Padding="5" Name="Upcoming" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" Margin="0,0,0,20">
+                <ListBox Name="Created" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="#FFEAEAEA" >
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <Border Padding="18">
-                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding FormatedDayName}" TextAlignment="Center" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="12" />
-                                                <TextBlock Text="{Binding FormatedDay}" TextAlignment="Center" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="20" />
+                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding FormatedDayName}" TextAlignment="Center" FontWeight="Light" FontSize="12" />
+                                                <TextBlock Text="{Binding FormatedDay}" TextAlignment="Center" FontSize="20" />
                                             </StackPanel>
                                         </Border>
                                         <Border Padding="18">
@@ -41,7 +40,7 @@
                                         </Border>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Content="Szczegóły" Tag="{Binding Id}" Style="{StaticResource agreeButton}" Click="JoinButton_click"/>
+                                        <Button Content="Szczegóły" Tag="{Binding Id}" Style="{StaticResource agreeButton}" Click="DetailsButton_click" Background="{x:Null}" />
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

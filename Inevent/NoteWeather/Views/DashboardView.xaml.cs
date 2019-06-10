@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,19 +43,28 @@ namespace Inevent.Views
             return false;
         }
 
-
         private async void LoadEvents()
         {
             try
             {
-                signedEvents = await Events.LoadSigned(Properties.Settings.Default.id);
                 Event[] upcomingEvents = await Events.LoadEvents();
-                int[] signedIds = signedEvents.Select(p => p.Id).ToArray();
                 foreach (Event ev in upcomingEvents)
                 {
                     ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
                     ev.FormatedDay = ev.Date.ToString("dd");
                     ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
+                    TimeSpan t = ev.Date - DateTime.Now;
+                    if (ev.Date > DateTime.Now)
+                    {
+                        ev.Countdown = string.Format("{0} dni, {1} godzin, {2} minut, {3} sekund", t.Days, t.Hours, t.Minutes, t.Seconds);
+                    }
+                    else
+                    {
+                        upcomingEvents = upcomingEvents.Where(val => val.Id != ev.Id).ToArray();
+                        ev.Countdown = "Wydarzenie odbyło się.";
+                    }
+
+
 
                 }
                 if (upcomingEvents.Length > 0)

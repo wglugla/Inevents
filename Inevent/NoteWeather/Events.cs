@@ -35,6 +35,33 @@ namespace Inevent
             }
         }
 
+        public static async Task<int[]> LoadEventsId()
+        {
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync("http://localhost:5000/api/events");
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    Event[] jsonObject = JsonConvert.DeserializeObject<Event[]>(result);
+                    List<int> res = new List<int>();
+                    foreach(Event ev in jsonObject)
+                    {
+                        res.Add(ev.Id);
+                    }
+                    return res.ToArray();
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public static async Task<Event[]> LoadEvent(int id)
         {
             try

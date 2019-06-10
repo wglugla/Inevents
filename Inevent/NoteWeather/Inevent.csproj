@@ -83,6 +83,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="Users.cs" />
+    <Compile Include="ViewModels\CreatedEventsModel.cs" />
     <Compile Include="ViewModels\DashboardModel.cs" />
     <Compile Include="ViewModels\EditEventModel.cs" />
     <Compile Include="ViewModels\EditProfileModel.cs" />
@@ -91,6 +92,11 @@
     <Compile Include="ViewModels\EventsByTagModel.cs" />
     <Compile Include="ViewModels\HomeModel.cs" />
     <Compile Include="ViewModels\MainModel.cs" />
+    <Compile Include="ViewModels\MatchedEventsModel.cs" />
+    <Compile Include="ViewModels\SignedEventsModel.cs" />
+    <Compile Include="Views\CreatedEventsView.xaml.cs">
+      <DependentUpon>CreatedEventsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +118,12 @@
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MatchedEventsView.xaml.cs">
+      <DependentUpon>MatchedEventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignedEventsView.xaml.cs">
+      <DependentUpon>SignedEventsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,6 +139,10 @@
     <Page Include="Simple Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreatedEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
@@ -153,6 +169,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MatchedEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignedEventsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

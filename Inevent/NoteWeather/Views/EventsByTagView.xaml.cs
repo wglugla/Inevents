@@ -36,9 +36,26 @@ namespace Inevent.Views
                 ev.FormatedDate = DateTime.Now.ToString("dddd, dd MMMM yyyy");
                 ev.FormatedDay = DateTime.Now.ToString("dd");
                 ev.FormatedDayName = DateTime.Now.ToString("dddd").Substring(0, 3).ToUpper();
-
+                TimeSpan t = ev.Date - DateTime.Now;
+                if (ev.Date > DateTime.Now)
+                {
+                    ev.Countdown = string.Format("{0} dni, {1} godzin, {2} minut, {3} sekund", t.Days, t.Hours, t.Minutes, t.Seconds);
+                }
+                else
+                {
+                    events = events.Where(val => val.Id != ev.Id).ToArray();
+                    ev.Countdown = "Wydarzenie odbyło się.";
+                }
             }
-            EventsList.ItemsSource = events;
+            if (events.Length > 0)
+            {
+                EventsList.ItemsSource = events;
+            }
+            else
+            {
+                IfEmpty.Text = "Brak nadchodzących wydarzeń";
+            }
+            
         }
 
         void JoinButton_click(object sender, EventArgs e)
