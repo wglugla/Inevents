@@ -11,8 +11,15 @@ using System.Threading.Tasks;
 
 namespace Inevent
 {
+    /// <summary>
+    /// Statyczna klasa obsługująca wszystkie zapytania związane z wydarzeniami
+    /// </summary>
     public static class Events
     {
+        /// <summary>
+        /// Asynchroniczne zadanie z zapytaniem do API o wszystkie wydarzenia, jakie znajdują się w bazie
+        /// </summary>
+        /// <returns> Tablica obiektów Event zawierająca informację o wszystkich eventach </returns>
         public static async Task<Event[]> LoadEvents()
         {
             try
@@ -35,6 +42,10 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Asynchroniczne zadanie z zapytaniem do API o wszystkie wydarzenia, wydzialące jedynie ich identyfikatory
+        /// </summary>
+        /// <returns> Tablica identyfikatorów wszystkich eventów (tablica typu int) </returns>
         public static async Task<int[]> LoadEventsId()
         {
             try
@@ -62,6 +73,11 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Pobiera szczegółowe informacje o evencie
+        /// </summary>
+        /// <param name="id"> ID eventu </param>
+        /// <returns> Tablica typu Event z obiektem zawierającym informacje na temat wydarzenia </returns>
         public static async Task<Event[]> LoadEvent(int id)
         {
             try
@@ -85,6 +101,11 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Pobiera wydarzenia, w których dany użytkownik weźmie udział
+        /// </summary>
+        /// <param name="userId"> ID użytkownika </param>
+        /// <returns> Tablica eventów typu Event </returns>
         public static async Task<Event[]> LoadSigned(int userId)
         {
             try
@@ -107,6 +128,11 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Pobiera identyfikatory eventów, w których użytkownik weźmie udział
+        /// </summary>
+        /// <param name="userId"> ID użytkownika </param>
+        /// <returns> Tablica identyfikatorów (typu int) </returns>
         public static async Task<List<int>> LoadSignedId(int userId)
         {
             try
@@ -129,6 +155,11 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Pobiera wszystkie eventy, które posiadają tag o podanym identyfikatorze
+        /// </summary>
+        /// <param name="tagId"> ID tagu </param>
+        /// <returns> Tablica eventów typu Event </returns>
         public static async Task<Event[]> FindEventByTag(int tagId)
         {
             try
@@ -151,6 +182,13 @@ namespace Inevent
             }
         }
 
+
+        /// <summary>
+        /// Realizuje zapyytanie typu POST dodające nowego członka wydarzenia
+        /// </summary>
+        /// <param name="eventId"> ID wydarzenia </param>
+        /// <param name="userId"> ID użytkownika </param>
+        /// <returns> Informację true/false na teamt powodzenia dodania członka </returns>
         public static async Task<bool> AddMember(int eventId, int userId)
         {
             object data = new
@@ -178,6 +216,12 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Realizuje zapytanie typu DELETE usuwające użytkownika z listy członków wydarzenia
+        /// </summary>
+        /// <param name="eventId"> ID wydarzenia </param>
+        /// <param name="userId"> ID użytkownika </param>
+        /// <returns> Informację true/false na temat powodzenia usunięcia </returns>
         public static async Task<bool> RemoveMember(int eventId, int userId)
         {
             try
@@ -198,6 +242,15 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Tworzy nowe wydarzenie
+        /// </summary>
+        /// <param name="ownerId"> ID właściciela </param>
+        /// <param name="title"> Tytuł wydarzenia </param>
+        /// <param name="place"> Miejsce wydarzenia </param>
+        /// <param name="date"> Data wydarzenia </param>
+        /// <param name="description"> Opis wydarzenia </param>
+        /// <returns> ID nowoutworzonego wydarzenia </returns>
         public static async Task<int> CreateEvent(int ownerId, string title, string place, string date, string description)
         {
             object obj = new
@@ -231,6 +284,11 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Usuwa wydarzenie
+        /// </summary>
+        /// <param name="eventId"> ID wydarzenia </param>
+        /// <returns> Wartość true/false w zależności od powodzenia operacji usunięcia </returns>
         public static async Task<bool> DeleteEvent(int eventId)
         {
             try
@@ -251,6 +309,12 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Modyfikuje tagi przypisane do wydarzenia
+        /// </summary>
+        /// <param name="eventId"> ID wydarzenia </param>
+        /// <param name="tagsIds"> Tablica zawierająca identyfikatory tagów, które mają być przypisane do wydarzenia </param>
+        /// <returns>  Wartość true/false określająca powodzenie operacji </returns>
         public static async Task<bool> ChangeEventTags(int eventId, int[] tagsIds)
         {
             var json = JsonConvert.SerializeObject(tagsIds);
@@ -274,6 +338,16 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Modyfikuje informacje o wydarzeniu 
+        /// </summary>
+        /// <param name="id"> ID wydarzenia </param>
+        /// <param name="ownerId"> ID właściciela  </param>
+        /// <param name="title"> Tytuł </param>
+        /// <param name="place"> Miejsce </param>
+        /// <param name="date"> Data </param>
+        /// <param name="description"> Opis </param>
+        /// <returns> Wartość true/false określająca powodzenie operacji </returns>
         public static async Task<bool> UpdateEvent(int id, int ownerId, string title, string place, string date, string description)
         {
             object obj = new

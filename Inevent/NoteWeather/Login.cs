@@ -10,8 +10,17 @@ using Newtonsoft.Json;
 
 namespace Inevent
 {
+    /// <summary>
+    /// Klasa obsługująca komunikację z API z zakresu logowania i rejestracji użytkownika
+    /// </summary>
     public class Login
     {
+        /// <summary>
+        /// Metoda realizująca zapytanie z danymi do logowania
+        /// </summary>
+        /// <param name="username"> Login użytkownika </param>
+        /// <param name="password"> Hasło użytkownika </param>
+        /// <returns> Wartość true/false określające powodzenie requesta </returns>
         public async Task<bool> LoginUser (string username, string password)
         {
             object data = new

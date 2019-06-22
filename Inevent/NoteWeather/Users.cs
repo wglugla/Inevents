@@ -11,8 +11,15 @@ using System.Threading.Tasks;
 
 namespace Inevent
 {
+    /// <summary>
+    /// Statyczna klasa obsługująca zapytania do API dotyczące użytkowników
+    /// </summary>
     public static class Users
     {
+        /// <summary>
+        /// Pobiera wszystkich użytkowników z bazy
+        /// </summary>
+        /// <returns> Tablica obiektów zawierających informacje o użytkownikach </returns>
         public static async Task<object> LoadUsers()
         {
             try
@@ -33,6 +40,13 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Pobiera informacje na temat zalogowanego użytkownika
+        /// </summary>
+        /// <remarks>
+        /// (na podstawie ID pobranego podczas logowania)
+        /// </remarks>
+        /// <returns> Obiekty typu User </returns>
         public static async Task<User> LoadUser()
         {
             int userId = Properties.Settings.Default.id;
@@ -60,6 +74,12 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Modyfikuje tagi, który są przypisane do użytkownika
+        /// </summary>
+        /// <param name="userId"> ID użytkownika </param>
+        /// <param name="tagsIds"> Tablica id tagów, które mają być przypisane do użytkownika </param>
+        /// <returns></returns>
         public static async Task<bool> ChangeUserTags(int userId, int[] tagsIds)
         {
             var json = JsonConvert.SerializeObject(tagsIds);
@@ -83,6 +103,11 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Pobiera wydarzenia stworzone przez użytkownika
+        /// </summary>
+        /// <param name="userId"> ID użytkownika </param>
+        /// <returns> Tablica obiektów typu Event zawierająca wydarzenia utworzone przez podanego użytkownika </returns>
         public static async Task<Event[]> GetCreatedEvents(int userId)
         {
             try

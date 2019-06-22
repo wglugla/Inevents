@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Inevent.ViewModels
 {
+    /// <summary>
+    ///  Klasa modelu potrzebna do dynamicznego wygenerowania widoku
+    /// </summary>
     public class MatchedEventsModel
     {
     }

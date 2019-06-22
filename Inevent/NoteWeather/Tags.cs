@@ -10,8 +10,15 @@ using System.Threading.Tasks;
 
 namespace Inevent
 {
+    /// <summary>
+    /// Klasa statyczna obsługująca komunikację z API dotyczącą tagów
+    /// </summary>
     public static class Tags
     {
+        /// <summary>
+        /// Pobiera wszystkie tagi z bazy
+        /// </summary>
+        /// <returns> Tablica obiektów Tag zawierająca wszystkie istniejące tagi </returns>
         public static async Task<Tag[]> GetAllTags()
         {
             try
@@ -33,6 +40,11 @@ namespace Inevent
                 throw e;
             }
         }
+        /// <summary>
+        /// Pobiera tagi przypisane do użytkownika
+        /// </summary>
+        /// <param name="userId"> ID użytkownika </param>
+        /// <returns> Tablica obiektów typu Tag zawierająca tagi użytkownika </returns>
         public static async Task<Tag[]> GetUserTags(int userId)
         {
             try
