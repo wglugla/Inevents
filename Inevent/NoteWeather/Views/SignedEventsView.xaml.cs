@@ -1,8 +1,11 @@
 ﻿using Inevent.Models;
+using Inevent.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +25,7 @@ namespace Inevent.Views
     public partial class SignedEventsView : UserControl
     {
         public Event[] signedEvents { get; set; }
+        ObservableCollection<Event> observableEvents { get; set; }
 
         public SignedEventsView()
         {
@@ -52,7 +56,38 @@ namespace Inevent.Views
                 }
                 if (signedEvents.Length > 0)
                 {
-                    Signed.ItemsSource = signedEvents;
+                    observableEvents = new ObservableCollection<Event>(signedEvents.OrderBy(p => p.Date));
+                    Signed.ItemsSource = observableEvents;
+                    Thread timeUpdater = new Thread(() =>
+                    {
+                        CancellationToken token = new CancellationToken();
+                        for (; ; )
+                        {
+                            if (!token.IsCancellationRequested)
+                            {
+                                foreach (Event ev in observableEvents)
+                                {
+                                    TimeSpan t = ev.Date - DateTime.Now;
+                                    if (ev.Date > DateTime.Now)
+                                    {
+                                        ev.Countdown = string.Format("{0} dni, {1} godzin, {2} minut, {3} sekund", t.Days, t.Hours, t.Minutes, t.Seconds);
+                                    }
+                                    else
+                                    {
+                                        ev.Countdown = "Wydarzenie odbyło się.";
+                                    }
+                                }
+                                Task.Delay(1000, token).Wait(); // use await for async method
+
+                            }
+                            else
+                            {
+                                break; // end
+                            }
+                        }
+                    });
+                    timeUpdater.IsBackground = true;
+                    timeUpdater.Start();
                 }
                 else
                 {
@@ -65,9 +100,10 @@ namespace Inevent.Views
             }
         }
 
-        private void DetailsButton_click(object sender, RoutedEventArgs e)
+        void DetailsButton_click(object sender, EventArgs e)
         {
-            MessageBox.Show("DETAILS");
+            Properties.Settings.Default.currentEvent = Convert.ToInt32((sender as Button).Tag);
+            Content = new EventInfoModel();
         }
     }
 }

@@ -49,5 +49,32 @@ namespace Inevent
                 return false;
             }
         }
+
+        public async Task<bool> RegisterUser(string username, string name, string surname, string password)
+        {
+            object data = new
+            {
+                username,
+                name,
+                surname,
+                password
+            };
+
+            var json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            try
+            {
+                HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync("http://localhost:5000/api/users", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

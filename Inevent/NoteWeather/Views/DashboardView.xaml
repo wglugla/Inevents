@@ -18,7 +18,7 @@
             <StackPanel Background="White" Orientation="Vertical" Margin="15,5,15,15">
                 <Label Padding="15" Content="Nadchodzące wydarzenia" Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
                 <TextBlock x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
-                <ListBox Padding="5" Name="Upcoming" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" Margin="0,0,0,20">
+                <ListBox  Padding="5" Name="Upcoming" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" Margin="0,0,0,20">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="1" BorderBrush="#FFEAEAEA" >
@@ -41,7 +41,7 @@
                                         </Border>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Content="Szczegóły" Tag="{Binding Id}" Style="{StaticResource agreeButton}" Click="JoinButton_click"/>
+                                        <Button Content="Szczegóły" Tag="{Binding Id}" Style="{StaticResource agreeButton}" Click="DetailsButton_click"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>

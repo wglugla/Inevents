@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Inevent.Views.RegisterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Inevent.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="/images/loginPhoto.jpg" Stretch="UniformToFill"/>
+        <Grid Grid.Column="1">
+            <Grid VerticalAlignment="Center" Margin="0,0,0,10">
+                <StackPanel>
+                    <Label Content="Zarejestruj się" />
+                    <StackPanel>
+                        <TextBox x:Name="UsernameBox" Text="Nick" />
+                        <TextBox x:Name="NameBox" Text="Imię" />
+                        <TextBox x:Name="SurnameBox" Text="Nazwisko" />
+                        <TextBox x:Name="PasswordBox" Text="Hasło" />
+                        <Button Content="Zarejestruj się" Click="RegisterButton_Click"/>
+                    </StackPanel>
+                </StackPanel>
+                <!--<Popup x:Name="ErrorPopup">
+                    <Grid Background="#FFEA5D5D"  Height="70" Width="400">
+                        <TextBox Text="Wystąpił błąd!"  Background="{x:Null}" Foreground="White" Margin="10,10,291.997,39.907" FontWeight="Bold" Height="20.093" Width="98.003" BorderBrush="{x:Null}"/>
+                        <TextBox x:Name="ErrorPopupContent" Background="{x:Null}" Foreground="White" Text="Przykładowy tekst błędu" BorderBrush="{x:Null}" Margin="10,35.093,17.2,10" />
+                        --><!--<Button x:Name="ErrorPopupCloseButton" Content="x" HorizontalAlignment="Left" Margin="371.534,9,0,0" VerticalAlignment="Top" Width="18.466" Click="ErrorPopupCloseButton_Click"/>--><!--
+                    </Grid>
+                </Popup>-->
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

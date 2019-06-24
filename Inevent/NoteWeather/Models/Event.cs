@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Inevent.Models
     /// <summary>
     /// Klasa pełniąca funkcję modelu wydarzenia + dodatkowe informacje obliczane podczas działania na obiektach klasy
     /// </summary>
-    public class Event
+    public class Event : INotifyPropertyChanged
     {
         /// <summary>
         ///  ID wydarzenia
@@ -58,6 +59,28 @@ namespace Inevent.Models
         /// <summary>
         ///  Czas w formacie DD, HH, MM, SS odliczający czas do rozpoczęcia wydarzenia
         /// </summary>
-        public string Countdown { get; set; }
+        private string _countdown;
+        public string Countdown {
+            get { return _countdown; }
+            set
+            {
+                if (_countdown != value)
+                {
+                    _countdown = value;
+                    OnPropertyChanged("Countdown");
+                }
+            }
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+
+        public void OnPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

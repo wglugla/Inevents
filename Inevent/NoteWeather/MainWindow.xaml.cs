@@ -33,7 +33,6 @@ namespace Inevent
         {
             InitializeComponent();
             ApiHelper.InitializeClient();
-            ShowError("TEST");
             ErrorPopup.IsOpen = false;
         }
 
@@ -97,6 +96,11 @@ namespace Inevent
                 }
                 
             }
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new RegisterModel();
         }
 
         private void ErrorPopupCloseButton_Click(object sender, RoutedEventArgs e)

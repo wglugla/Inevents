@@ -1,8 +1,11 @@
 ﻿using Inevent.Models;
+using Inevent.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +25,8 @@ namespace Inevent.Views
     public partial class CreatedEventsView : UserControl
     {
         public Event[] signedEvents { get; set; }
+        ObservableCollection<Event> observableEvents { get; set; }
+
         public CreatedEventsView()
         {
             InitializeComponent();
@@ -33,6 +38,7 @@ namespace Inevent.Views
             try
             {
                 signedEvents = await Users.GetCreatedEvents(Properties.Settings.Default.id);
+                observableEvents = new ObservableCollection<Event>();
                 foreach (Event ev in signedEvents)
                 {
                     ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
@@ -48,10 +54,41 @@ namespace Inevent.Views
                         ev.Countdown = "Wydarzenie odbyło się";
 
                     }
+                    observableEvents.Add(ev);
                 }
                 if (signedEvents.Length > 0)
                 {
-                    Created.ItemsSource = signedEvents;
+                    Created.ItemsSource = observableEvents.OrderBy(p => p.Date).ToList();
+                    Thread timeUpdater = new Thread(() =>
+                    {
+                        CancellationToken token = new CancellationToken();
+                        for (; ; )
+                        {
+                            if (!token.IsCancellationRequested)
+                            {
+                                foreach (Event ev in observableEvents)
+                                {
+                                    TimeSpan t = ev.Date - DateTime.Now;
+                                    if (ev.Date > DateTime.Now)
+                                    {
+                                        ev.Countdown = string.Format("{0} dni, {1} godzin, {2} minut, {3} sekund", t.Days, t.Hours, t.Minutes, t.Seconds);
+                                    }
+                                    else
+                                    {
+                                        ev.Countdown = "Wydarzenie odbyło się.";
+                                    }
+                                }
+                                Task.Delay(1000, token).Wait(); // use await for async method
+
+                            }
+                            else
+                            {
+                                break; // end
+                            }
+                        }
+                    });
+                    timeUpdater.IsBackground = true;
+                    timeUpdater.Start();
                 }
                 else
                 {
@@ -64,9 +101,10 @@ namespace Inevent.Views
             }
         }
 
-        private void DetailsButton_click(object sender, RoutedEventArgs e)
+        private void DetailsButton_click(object sender, EventArgs e)
         {
-            MessageBox.Show("DETAILS");
+            Properties.Settings.Default.currentEvent = Convert.ToInt32((sender as Button).Tag);
+            Content = new EventInfoModel();
         }
     }
 }

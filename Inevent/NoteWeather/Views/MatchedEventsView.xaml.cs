@@ -1,8 +1,11 @@
 ﻿using Inevent.Models;
+using Inevent.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +19,7 @@ using System.Windows.Shapes;
 
 namespace Inevent.Views
 {
+
     /// <summary>
     /// Interaction logic for MatchedEventsView.xaml
     /// </summary>
@@ -23,6 +27,7 @@ namespace Inevent.Views
     {
         public List<Event> matchedEvents { get; set; }
         public Tag[] userTags { get; set; }
+        ObservableCollection<Event> observableEvents { get; set; }
 
         public MatchedEventsView()
         {
@@ -76,10 +81,41 @@ namespace Inevent.Views
                     }
                 }
                 Event[] result = matchedEvents.ToArray();
+                observableEvents = new ObservableCollection<Event>(result.OrderBy(p => p.Date));
                 if (result.Length > 0)
                 {
                     result.OrderBy(p => p.MatchedValue);
-                    Matched.ItemsSource = result;
+                    Matched.ItemsSource = observableEvents;
+                    Thread timeUpdater = new Thread(() =>
+                    {
+                        CancellationToken token = new CancellationToken();
+                        for (; ; )
+                        {
+                            if (!token.IsCancellationRequested)
+                            {
+                                foreach (Event ev in observableEvents)
+                                {
+                                    TimeSpan t = ev.Date - DateTime.Now;
+                                    if (ev.Date > DateTime.Now)
+                                    {
+                                        ev.Countdown = string.Format("{0} dni, {1} godzin, {2} minut, {3} sekund", t.Days, t.Hours, t.Minutes, t.Seconds);
+                                    }
+                                    else
+                                    {
+                                        ev.Countdown = "Wydarzenie odbyło się.";
+                                    }
+                                }
+                                Task.Delay(1000, token).Wait(); // use await for async method
+
+                            }
+                            else
+                            {
+                                break; // end
+                            }
+                        }
+                    });
+                    timeUpdater.IsBackground = true;
+                    timeUpdater.Start();
                 }
                 else
                 {
@@ -92,9 +128,10 @@ namespace Inevent.Views
             }
         }
 
-        private void DetailsButton_click(object sender, RoutedEventArgs e)
+        private void DetailsButton_click(object sender, EventArgs e)
         {
-            MessageBox.Show("DETAILS");
+            Properties.Settings.Default.currentEvent = Convert.ToInt32((sender as Button).Tag);
+            Content = new EventInfoModel();
         }
     }
 }

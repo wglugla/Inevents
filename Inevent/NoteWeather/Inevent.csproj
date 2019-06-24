@@ -94,6 +94,7 @@
     <Compile Include="ViewModels\HomeModel.cs" />
     <Compile Include="ViewModels\MainModel.cs" />
     <Compile Include="ViewModels\MatchedEventsModel.cs" />
+    <Compile Include="ViewModels\RegisterModel.cs" />
     <Compile Include="ViewModels\SignedEventsModel.cs" />
     <Compile Include="Views\CreatedEventsView.xaml.cs">
       <DependentUpon>CreatedEventsView.xaml</DependentUpon>
@@ -121,6 +122,9 @@
     </Compile>
     <Compile Include="Views\MatchedEventsView.xaml.cs">
       <DependentUpon>MatchedEventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignedEventsView.xaml.cs">
       <DependentUpon>SignedEventsView.xaml</DependentUpon>
@@ -174,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MatchedEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
