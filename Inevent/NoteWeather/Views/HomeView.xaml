@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#FCFBFE">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderThickness="0,0,0,2">
@@ -17,11 +17,14 @@
                 <SolidColorBrush Color="#FFEAEAEA" Opacity="0.5"/>
             </Border.BorderBrush>
             <Grid Grid.Row="0" Background="White">
-                <Label Content="Inevent" FontFamily="/Inevent;component/Fonts/#Open Sans ExtraBold" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="{x:Null}" FontSize="24" Margin="0" MinWidth="160" MinHeight="70" BorderThickness="0,0,2,0" Foreground="#FF525252">
-                    <Label.BorderBrush>
-                        <SolidColorBrush Color="#FFEAEAEA" Opacity="0.5"/>
-                    </Label.BorderBrush>
-                </Label>
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <Image Height="40" Width="50" Source="mainIcon.jpg"/>
+                    <Label Padding="0 0 20 0" VerticalAlignment="Center" Content="Inevent" BorderThickness="0,0,2,0" FontSize="24" Margin="10,5,0,0" Height="60" VerticalContentAlignment="Center">
+                        <Label.BorderBrush>
+                            <SolidColorBrush Color="#FFEAEAEA" Opacity="0.5"/>
+                        </Label.BorderBrush>
+                    </Label>
+                </StackPanel>
             </Grid>
         </Border>
         <Grid Grid.Row="1">
@@ -31,26 +34,60 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Grid.RowSpan="2" >
-
                 <Grid Grid.Row="1" Grid.Column="0" >
-                    <StackPanel Background="White">
-                        <Label Content="MENU" Margin="5,10,0,0" FontWeight="Bold" Background="{x:Null}" Foreground="#FF716F6F" />
+                    <StackPanel Background="White" Margin="6,20,0,0">
+                        <Label Content="MENU" Margin="5,10,0,0" Background="{x:Null}" Foreground="#FF716F6F" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" />
                         <StackPanel Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.RowSpan="2" Margin="0,10,0,0">
-                            <Button Width="Auto" Content="Panel główny" FontSize="14"  Click="Dashboard_click"/>
-                            <Button Width="Auto" Content="Utwórz wydarzenie" FontSize="14"  Click="CreateEvent_Click"/>
-                            <Button Width="Auto" Content="Twoje wydarzenia" FontSize="14" Click="Created_Click" />
-                            <Button Width="Auto" Content="Wybrane przez ciebie" FontSize="14" Click="Signed_Click"/>
-                            <Button Width="Auto" Content="Wybrane dla ciebie" FontSize="14" Click="Matched_Click"/>
-                            <Button Width="Auto" Content="Edytuj profil" FontSize="14" Click="EditProfile_Click"/>
+                            <Button x:Name="DashboardButton" Width="Auto" FontSize="14"  Click="Dashboard_click" FontFamily="/Inevent;component/Fonts/#Open Sans">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Height="20" Source="dashboardIcon.png" Margin="0,0,5,0" />
+                                    <TextBlock Text="Panel główny" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="CreateEventButton"  Width="Auto" FontSize="14"  Click="CreateEvent_Click" FontFamily="/Inevent;component/Fonts/#Open Sans">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Height="20" Source="createIcon.png" Margin="0,0,5,0" />
+                                    <TextBlock Text="Utwórz wydarzenie" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="CreatedButton"  Width="Auto" FontSize="14" Click="Created_Click" FontFamily="/Inevent;component/Fonts/#Open Sans">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Height="20" Source="createdIcon.png" Margin="0,0,5,0" />
+                                    <TextBlock Text="Twoje wydarzenia" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="SignedButton" Width="Auto" FontSize="14" Click="Signed_Click" FontFamily="/Inevent;component/Fonts/#Open Sans">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Height="20" Source="signedIcon.png" Margin="0,0,5,0" />
+                                    <TextBlock Text="Wybrane przez Ciebie" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="MatchedButton" Width="Auto" FontSize="14" Click="Matched_Click" FontFamily="/Inevent;component/Fonts/#Open Sans">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Height="20" Source="matchedIcon.png" Margin="0,0,5,0" />
+                                    <TextBlock Text="Wybrane dla Ciebie" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="ProfileEditButton" Width="Auto" FontSize="14" Click="EditProfile_Click" FontFamily="/Inevent;component/Fonts/#Open Sans">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="20" Height="20" Source="favouritesIcon.png" Margin="0,0,5,0" />
+                                    <TextBlock Text="Edytuj profil" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                         <StackPanel Margin="-5,0,0,0">
                             <TextBlock Text="ULUBIONE TAGI" Margin="10,25,0,0" Foreground="#FF767676" FontWeight="Bold"/>
                             <TextBlock x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
-                            <ListBox HorizontalContentAlignment="Stretch" Name="Favourites" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <ListBox ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch" Name="Favourites" Background="{x:Null}" BorderBrush="{x:Null}" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Content="{Binding Value}" Tag="{Binding Id}" Click="TagButton_click" FontSize="14" />
+                                            <Button Tag="{Binding Id}" Click="TagButton_click" FontSize="14">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <Image Height="20" Width="20" Source="heartIcon.png" Margin="0,5,5,0" />
+                                                    <TextBlock Text="{Binding Value}" VerticalAlignment="Center" Margin="0,7,0,0" />
+                                                </StackPanel>
+                                            </Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
@@ -60,9 +97,9 @@
                 </Grid>
             </ScrollViewer>
             <ContentControl Name="Control" Grid.Row="1" Grid.Column="1" Content="{Binding}">
-                
+
             </ContentControl>
-            <Grid Grid.Row="1" Grid.Column="2" Background="White">
+            <Grid Grid.Row="1" Grid.Column="2" Background="White" Margin="0,20,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -73,7 +110,12 @@
                     <ListBox HorizontalContentAlignment="Stretch" Name="AllTags" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Button Content="{Binding Value}" Tag="{Binding Id}" Click="TagButton_click" />
+                                <Button Tag="{Binding Id}" Click="TagButton_click" Background="White" FontFamily="/Inevent;component/Fonts/#Open Sans" Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Image Height="20" Width="20" Source="tagIcon.png" Margin="0 5 5 0" />
+                                        <TextBlock Text="{Binding Value}" VerticalAlignment="Center" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                </Button>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

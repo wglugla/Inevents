@@ -24,13 +24,30 @@ namespace Inevent.Views
     /// </summary>
     public partial class CreatedEventsView : UserControl
     {
-        public Event[] signedEvents { get; set; }
-        ObservableCollection<Event> observableEvents { get; set; }
+        public Event[] signedEvents { get; private set; }
+        public ObservableCollection<Event> observableEvents { get; private set; }
 
         public CreatedEventsView()
         {
             InitializeComponent();
             LoadEvents();
+        }
+
+        private delegate void DataFormatter(Event ev);
+
+        private void FormatDate(Event ev)
+        {
+            ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
+        }
+
+        private void FormatDay(Event ev)
+        {
+            ev.FormatedDay = ev.Date.ToString("dd");
+        }
+
+        private void FormatDayName(Event ev)
+        {
+            ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
         }
 
         private async void LoadEvents()
@@ -39,11 +56,12 @@ namespace Inevent.Views
             {
                 signedEvents = await Users.GetCreatedEvents(Properties.Settings.Default.id);
                 observableEvents = new ObservableCollection<Event>();
+                DataFormatter formatDate = new DataFormatter(FormatDate);
+                formatDate += FormatDay;
+                formatDate += FormatDayName;
                 foreach (Event ev in signedEvents)
                 {
-                    ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
-                    ev.FormatedDay = ev.Date.ToString("dd");
-                    ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
+                    formatDate(ev);
                     TimeSpan t = ev.Date - DateTime.Now;
                     if (ev.Date > DateTime.Now)
                     {

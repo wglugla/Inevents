@@ -11,28 +11,35 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="0,15,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer HorizontalScrollBarVisibility="Visible"  Grid.RowSpan="2">
-            <StackPanel Background="White" Orientation="Vertical" Margin="15,5,15,15">
-                <Label Padding="15" Content="Nadchodzące wydarzenia" Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
-                <TextBlock x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
-                <ListBox  Padding="5" Name="Upcoming" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" Margin="0,0,0,20">
+        <!--<ScrollViewer Grid.RowSpan="2">-->
+            <Grid Grid.Row="0" Background="White" Margin="15,5,15,15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Padding="15" Content="Nadchodzące wydarzenia" Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
+                <TextBlock Grid.Row="1" x:Name="IfEmpty" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
+                <ListBox ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.Row="1" Padding="5" Name="Upcoming" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" Margin="0,0,0,20" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="1" BorderBrush="#FFEAEAEA" >
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Padding="18">
+                            <Border BorderThickness="1" BorderBrush="#FFEAEAEA" Background="{x:Null}" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                        <Border Padding="35,18">
                                             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding FormatedDayName}" TextAlignment="Center" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="12" />
-                                                <TextBlock Text="{Binding FormatedDay}" TextAlignment="Center" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="20" />
+                                                <TextBlock Text="{Binding FormatedDayName}" TextAlignment="Center" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="14" />
+                                                <TextBlock Text="{Binding FormatedDay}" TextAlignment="Center" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="26" />
                                             </StackPanel>
                                         </Border>
-                                        <Border Padding="18">
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock Text="{Binding Title}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="Bold" FontSize="16" />
+                                        <Border Padding="18" Background="{x:Null}" BorderBrush="#FFE7E7E7" BorderThickness="1,0,0,0">
+                                            <StackPanel Orientation="Vertical" Margin="0,15,0,0">
+                                                <TextBlock Text="{Binding Title}" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" FontSize="16" />
                                                 <TextBlock Text="{Binding FormatedDate}" FontSize="12" FontWeight="Light" FontFamily="/Inevent;component/Fonts/#Open Sans" />
                                                 <TextBlock Text="{Binding Place}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontWeight="Light" />
                                                 <TextBlock Text="Pozostały czas: " />
@@ -40,15 +47,20 @@
                                             </StackPanel>
                                         </Border>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="Szczegóły" Tag="{Binding Id}" Style="{StaticResource agreeButton}" Click="DetailsButton_click"/>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                        <Button Tag="{Binding Id}" Style="{StaticResource agreeButton}" Click="DetailsButton_click" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <Image Width="20" Height="20" Source="detailsIcon.png" Margin="0,0,5,0" />
+                                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="Szczegóły" Margin="5,0,0,0" FontFamily="/Inevent;component/Fonts/#Open Sans" />
+                                            </StackPanel>
+                                        </Button>
                                     </StackPanel>
-                                </StackPanel>
+                                </Grid>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </StackPanel>
-        </ScrollViewer>
+            </Grid>
+        <!--</ScrollViewer>-->
     </Grid>
 </UserControl>

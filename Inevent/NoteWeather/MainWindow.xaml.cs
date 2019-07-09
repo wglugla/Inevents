@@ -56,12 +56,19 @@ namespace Inevent
             return false;
         }
 
+        /// <summary>
+        /// Metoda otwierajca popup w przypadku błędu logowania
+        /// </summary>
+        /// <param name="message"> Treść błędu </param>
         private void ShowError(string message)
         {
             ErrorPopup.IsOpen = true;
             ErrorPopupContent.Text = message;
         }
-
+        
+        /// <summary>
+        /// Metoda zamykająca popup
+        /// </summary>
         private void ClearError()
         {
             loginErrorMessagebox.Text = String.Empty;
@@ -70,7 +77,7 @@ namespace Inevent
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             Login = loginBox.Text;
-            Password = passwordBox.Text;
+            Password = passwordBox.Password.ToString();
             
             if (!ValidateLogin())
             {
@@ -87,8 +94,8 @@ namespace Inevent
                 bool success = await login.LoginUser(Login, Password);
                 if (success == true)
                 {
+                    ApiHelper.AddTokenHeader(Properties.Settings.Default.accessToken);
                     Content = new HomeModel();
-                    ShowError(Properties.Settings.Default.accessToken);
                 }
                 else
                 {

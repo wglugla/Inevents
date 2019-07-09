@@ -28,8 +28,8 @@ namespace Inevent.Views
     public partial class DashboardView : UserControl, INotifyPropertyChanged
     {
         public int UserID { get; set; }
-        public Event[] signedEvents { get; set; }
-        ObservableCollection<Event> observableEvents { get; set; }
+        public Event[] signedEvents { get; private set; }
+        public ObservableCollection<Event> observableEvents { get; private set; }
 
 
         public DashboardView()
@@ -39,11 +39,28 @@ namespace Inevent.Views
             UserID = Properties.Settings.Default.id;
         }
 
+        private delegate void DataFormatter(Event ev);
+
+        private void FormatDate(Event ev)
+        {
+            ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
+        }
+
+        private void FormatDay(Event ev)
+        {
+            ev.FormatedDay = ev.Date.ToString("dd");
+        }
+
+        private void FormatDayName(Event ev)
+        {
+            ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private bool ifSigned(int a, int[] b)
         {
-            for (int i=0; i<b.Length; i++)
+            for (int i = 0; i < b.Length; i++)
             {
                 if (b[i] == a) return true;
             }
@@ -56,11 +73,12 @@ namespace Inevent.Views
             {
                 Event[] upcomingEvents = await Events.LoadEvents();
                 observableEvents = new ObservableCollection<Event>();
+                DataFormatter formatDate = new DataFormatter(FormatDate);
+                formatDate += FormatDay;
+                formatDate += FormatDayName;
                 foreach (Event ev in upcomingEvents)
                 {
-                    ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
-                    ev.FormatedDay = ev.Date.ToString("dd");
-                    ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
+                    formatDate(ev);
                     TimeSpan t = ev.Date - DateTime.Now;
                     if (ev.Date > DateTime.Now)
                     {
@@ -113,7 +131,7 @@ namespace Inevent.Views
                     IfEmpty.Text = "Brak nadchodzących wydarzeń";
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -136,11 +154,6 @@ namespace Inevent.Views
         void DashboardButton_click(object sender, EventArgs e)
         {
             Content = new DashboardModel();
-        }
-
-        void Test_click(object sender, EventArgs e)
-        {
-            MessageBox.Show("JEST");
         }
     }
 }

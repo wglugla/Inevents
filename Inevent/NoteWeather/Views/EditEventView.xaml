@@ -18,17 +18,19 @@
                     <Label Content="Miejsce wydarzenia" Margin="0,20,0,0"/>
                     <TextBox x:Name="PlaceBox" Style="{StaticResource formInput}"/>
                     <Label Content="Data wydarzenia" Margin="0,20,0,0"/>
-                    <xctk:DateTimePicker x:Name="DateBox" />
+                    <xctk:DateTimePicker x:Name="DateBox" Margin="10 0">
+
+                    </xctk:DateTimePicker>
                     <Label Content="Opis wydarzenia" Margin="0,20,0,0" />
-                    <TextBox x:Name="DescriptionBox" Style="{StaticResource formInput}" Height="93.68"/>
-                    <ListBox x:Name="TagList" Margin="20,0,0,0" VerticalAlignment="Top">
+                    <TextBox x:Name="DescriptionBox" Style="{StaticResource formInput}" Height="93.68" TextWrapping="Wrap"/>
+                    <ListBox x:Name="TagList" Margin="20,0,0,0" VerticalAlignment="Top" Height="200">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <CheckBox Content="{Binding Value}" Tag="{Binding Id}" IsChecked="{Binding IsChecked}"/>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <Button Content="Zapisz zmiany" Click="ModifyEvent_click"/>
+                    <Button Style="{StaticResource agreeButton}" Content="Zapisz zmiany" Click="ModifyEvent_click"/>
 
                 </StackPanel>
             </StackPanel>

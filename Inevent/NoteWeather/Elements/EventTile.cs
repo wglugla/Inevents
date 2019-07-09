@@ -16,31 +16,31 @@ namespace Inevent.Elements
         /// <summary>
         /// ID eventu
         /// </summary>
-        private int EventId { get; set; }
+        public int EventId { get; private set; }
         /// <summary>
         /// ID twórcy
         /// </summary>
-        private int OwnerId { get; set; }
+        public int OwnerId { get; private set; }
         /// <summary>
         /// Tytuł
         /// </summary>
-        private string Title { get; set; }
+        public string Title { get; private set; }
         /// <summary>
         /// Miejsce
         /// </summary>
-        private string Place { get; set; }
+        public string Place { get; private set; }
         /// <summary>
         /// Opis wydarzenia
         /// </summary>
-        private string Description { get; set; }
+        public string Description { get; private set; }
         /// <summary>
         /// Data wydarzenia
         /// </summary>
-        private DateTime EventDate { get; set; }
+        public DateTime EventDate { get; private set; }
         /// <summary>
         /// Tablica tagów przypisanych do eventu
         /// </summary>
-        private string[] Tags { get; set; }
+        public string[] Tags { get; private set; }
 
         /// <summary>
         /// Konstruktor klasy EventTile

@@ -13,22 +13,34 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Column="0" Source="/images/loginPhoto.jpg" Stretch="UniformToFill"/>
         <Grid Grid.Column="1">
-            <Grid VerticalAlignment="Center" Margin="0,0,0,10">
+            <Grid  Margin="24,41.6,0,10">
                 <StackPanel>
-                    <Label Content="Zarejestruj się" />
-                    <StackPanel>
-                        <TextBox x:Name="UsernameBox" Text="Nick" />
-                        <TextBox x:Name="NameBox" Text="Imię" />
-                        <TextBox x:Name="SurnameBox" Text="Nazwisko" />
-                        <TextBox x:Name="PasswordBox" Text="Hasło" />
-                        <Button Content="Zarejestruj się" Click="RegisterButton_Click"/>
+                    <Label Content="Zarejestruj się" Margin="0,-25.96,0,25.96" FontSize="36" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" HorizontalAlignment="Left" Height="71.027" Width="266.373"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Login" FontSize="22" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" HorizontalAlignment="Left" Width="106.8" VerticalAlignment="Center" />
+                        <TextBox x:Name="UsernameBox" Style="{StaticResource ResourceKey=formInput}" Text="" Width="214" HorizontalAlignment="Left" Margin="25,10,10,10" />
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Imię" FontSize="22" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" HorizontalAlignment="Left" Width="106.8" VerticalAlignment="Center" />
+                        <TextBox x:Name="NameBox" Style="{StaticResource formInput}" Text=""  Width="214.8" Margin="25,10,10,10" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Nazwisko" FontSize="22" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" HorizontalAlignment="Left" Width="119.6" VerticalAlignment="Center" />
+                        <TextBox x:Name="SurnameBox" Style="{StaticResource formInput}" Text="" Margin="13,10,10,10" Width="213.2" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Hasło" FontSize="22" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" HorizontalAlignment="Left" Width="106.8" VerticalAlignment="Center" />
+                        <PasswordBox x:Name="PasswordBox" Style="{StaticResource passwordInput}" Margin="25,10,10,10" Width="213.2" />
+                    </StackPanel>
+                    <Button Content="Zarejestruj się" Style="{StaticResource ResourceKey=agreeButton}" Click="RegisterButton_Click" Margin="0,10,253.2,10" Background="#FF0E6ADD" Foreground="White" Height="47.96"/>
                 </StackPanel>
                 <!--<Popup x:Name="ErrorPopup">
                     <Grid Background="#FFEA5D5D"  Height="70" Width="400">
                         <TextBox Text="Wystąpił błąd!"  Background="{x:Null}" Foreground="White" Margin="10,10,291.997,39.907" FontWeight="Bold" Height="20.093" Width="98.003" BorderBrush="{x:Null}"/>
                         <TextBox x:Name="ErrorPopupContent" Background="{x:Null}" Foreground="White" Text="Przykładowy tekst błędu" BorderBrush="{x:Null}" Margin="10,35.093,17.2,10" />
-                        --><!--<Button x:Name="ErrorPopupCloseButton" Content="x" HorizontalAlignment="Left" Margin="371.534,9,0,0" VerticalAlignment="Top" Width="18.466" Click="ErrorPopupCloseButton_Click"/>--><!--
+                        -->
+                <!--<Button x:Name="ErrorPopupCloseButton" Content="x" HorizontalAlignment="Left" Margin="371.534,9,0,0" VerticalAlignment="Top" Width="18.466" Click="ErrorPopupCloseButton_Click"/>-->
+                <!--
                     </Grid>
                 </Popup>-->
             </Grid>

@@ -25,8 +25,8 @@ namespace Inevent.Views
     /// </summary>
     public partial class MatchedEventsView : UserControl
     {
-        public List<Event> matchedEvents { get; set; }
-        public Tag[] userTags { get; set; }
+        public List<Event> matchedEvents { get; private set; }
+        public Tag[] userTags { get; private set; }
         ObservableCollection<Event> observableEvents { get; set; }
 
         public MatchedEventsView()
@@ -39,6 +39,23 @@ namespace Inevent.Views
         {
             userTags = await Tags.GetUserTags(Properties.Settings.Default.id);
             LoadEvents();
+        }
+
+        private delegate void DataFormatter (Event ev);
+
+        private void FormatDate(Event ev)
+        {
+            ev.FormatedDate = ev.Date.ToString("dddd, dd MMMM yyyy HH:mm");
+        } 
+
+        private void FormatDay(Event ev)
+        {
+            ev.FormatedDay = ev.Date.ToString("dd");
+        }
+
+        private void FormatDayName(Event ev)
+        {
+            ev.FormatedDayName = ev.Date.ToString("dddd").Substring(0, 3).ToUpper();
         }
 
         private double CompareTags(string[] tags)
@@ -65,14 +82,14 @@ namespace Inevent.Views
             try
             {
                 int[] eventsIds = await Events.LoadEventsId();
-
+                DataFormatter formatDate = new DataFormatter(FormatDate);
+                formatDate += FormatDay;
+                formatDate += FormatDayName;
                 foreach (int eventId in eventsIds)
                 {
                     Event[] newEvent = await Events.LoadEvent(eventId);
                     newEvent[0].MatchedValue = CompareTags(newEvent[0].Tags);
-                    newEvent[0].FormatedDate = newEvent[0].Date.ToString("dddd, dd MMMM yyyy HH:mm");
-                    newEvent[0].FormatedDay = newEvent[0].Date.ToString("dd");
-                    newEvent[0].FormatedDayName = newEvent[0].Date.ToString("dddd").Substring(0, 3).ToUpper();
+                    formatDate(newEvent[0]);
                     TimeSpan t = newEvent[0].Date - DateTime.Now;
                     if (newEvent[0].Date > DateTime.Now)
                     {

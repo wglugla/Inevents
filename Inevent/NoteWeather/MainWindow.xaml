@@ -7,8 +7,9 @@
         xmlns:viewmodels="clr-namespace:Inevent.ViewModels"
         xmlns:views="clr-namespace:Inevent.Views"
         mc:Ignorable="d"
+        Icon="mainIcon.jpg"
         Style="{StaticResource WinAll}"
-        Title="Inevent" Height="500" Width="800" MinWidth="500" MinHeight="500" FontFamily="/Inevent;component/Fonts/#Open Sans">
+        Title="Inevent" Height="500" Width="850" MinWidth="850" MinHeight="500" FontFamily="/Inevent;component/Fonts/#Open Sans">
     <Window.Resources>
         <DataTemplate x:Name="HomeViewTemplate" DataType="{x:Type viewmodels:HomeModel}">
             <views:HomeView DataContext="{Binding}"/>
@@ -57,26 +58,29 @@
             </Grid.RowDefinitions>
             <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,10">
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="19*"></RowDefinition>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="0*"></RowDefinition>
+                    <RowDefinition Height="46*"></RowDefinition>
+                    <RowDefinition Height="32*"></RowDefinition>
+                    <RowDefinition Height="32*"></RowDefinition>
+                    <RowDefinition Height="60*"></RowDefinition>
+                    <RowDefinition Height="34*"></RowDefinition>
 
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Zaloguj się" Margin="10,-25.96,-10,25.96" FontSize="36" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" HorizontalAlignment="Left" />
-                <TextBox x:Name="loginBox" Grid.Row="2" Style="{StaticResource formInput}" TextWrapping="Wrap" Text="admin" Background="{x:Null}" Foreground="Black"  VerticalContentAlignment="Center" Grid.RowSpan="1" FontFamily="/Inevent;component/Fonts/#Open Sans Light" Margin="10,-8.133,10,10" />
-                <TextBox x:Name="passwordBox" Grid.Row="3" Style="{StaticResource formInput}" TextWrapping="Wrap" Text="admin" Background="{x:Null}" Foreground="Black" VerticalContentAlignment="Center" Grid.RowSpan="2" FontFamily="/Inevent;component/Fonts/#Open Sans Light"/>
-                <Button x:Name="loginButton" Grid.Row="5" Style="{StaticResource agreeButton}"  Content="Zaloguj się" HorizontalAlignment="Left"  VerticalAlignment="Center" Background="#FF0E6ADD" BorderBrush="{x:Null}" Foreground="#FFEDEDED" FontSize="14" Click="LoginButton_Click" FontFamily="/Inevent;component/Fonts/#Open Sans" Margin="10,9.999,0,10" Width="330.8"/>
-                <Button x:Name="register" Grid.Row="6" Content="Nie masz konta? Zarejestruj się" FontSize="10" Height="33.617" VerticalAlignment="Top" Click="RegisterButton_Click"/>
-                <TextBlock x:Name="loginErrorMessagebox" HorizontalAlignment="Left" Margin="0,92.986,0,-141.613" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Width="400" Height="98.627"><Run Text=""/></TextBlock>
-                <Popup x:Name="ErrorPopup">
-                    <Grid Background="#FFEA5D5D"  Height="70" Width="400">
-                        <TextBox Text="Wystąpił błąd!"  Background="{x:Null}" Foreground="White" Margin="10,10,291.997,39.907" FontWeight="Bold" Height="20.093" Width="98.003" BorderBrush="{x:Null}"/>
+                <Label Grid.Row="0" Content="Zaloguj się" Margin="0,-39.732,0,0" FontSize="36" FontFamily="/Inevent;component/Fonts/#Open Sans SemiBold" HorizontalAlignment="Left" />
+                <Label Content="Login" Grid.RowSpan="4" Margin="0,33.322,0,18.255" Grid.Row="1" FontSize="20" />
+                <TextBox x:Name="loginBox" Grid.Row="1" Style="{StaticResource formInput}" TextWrapping="Wrap" Text="admin" Background="{x:Null}" Foreground="Black"  VerticalContentAlignment="Center" Grid.RowSpan="3" FontFamily="/Inevent;component/Fonts/#Open Sans Light" Margin="71.333,31.599,23.2,10" />
+                <Label Content="Hasło" Grid.RowSpan="3" Margin="0,13.64,0,47.507" Grid.Row="4" FontSize="20" />
+                <PasswordBox x:Name="passwordBox" Grid.Row="4" Style="{StaticResource passwordInput}" Background="{x:Null}" Foreground="Black" VerticalContentAlignment="Center" Grid.RowSpan="2" FontFamily="/Inevent;component/Fonts/#Open Sans Light" Margin="71.333,10,23.2,10"/>
+                <Button x:Name="loginButton" Grid.Row="6" Style="{StaticResource agreeButton}"  Content="Zaloguj się" HorizontalAlignment="Left"  VerticalAlignment="Center" Background="#FF0E6ADD" BorderBrush="{x:Null}" Foreground="#FFEDEDED" FontSize="14" Click="LoginButton_Click" FontFamily="/Inevent;component/Fonts/#Open Sans" Margin="0,9.996,0,9.998" Width="153.733"/>
+                <Button x:Name="register" Grid.Row="7" Content="Nie masz konta? Zarejestruj się" FontSize="10" Height="33.617" VerticalAlignment="Top" Click="RegisterButton_Click"/>
+                <TextBlock x:Name="loginErrorMessagebox" HorizontalAlignment="Left" Margin="0,33.324,-34.2,-98.334" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" Width="400" Height="98.627"><Run Text=""/></TextBlock>
+                <Popup x:Name="ErrorPopup" Grid.RowSpan="2">
+                    <Grid Background="#FFEA5D5D"  Height="70" Width="365.8">
+                        <TextBox Text="Wystąpił błąd!"  Background="{x:Null}" Foreground="White" Margin="10,10,214.597,39.907" FontWeight="Bold" Height="20.093" BorderBrush="{x:Null}"/>
                         <TextBox x:Name="ErrorPopupContent" Background="{x:Null}" Foreground="White" Text="Przykładowy tekst błędu" BorderBrush="{x:Null}" Margin="10,35.093,17.2,10" />
-                        <Button x:Name="ErrorPopupCloseButton" Content="x" HorizontalAlignment="Left" Margin="371.534,9,0,0" VerticalAlignment="Top" Width="18.466" Click="ErrorPopupCloseButton_Click"/>
+                        <Button x:Name="ErrorPopupCloseButton" Content="X"  HorizontalAlignment="Left" Margin="334.2,10,0,0" Width="14.4" Height="14.493" Click="ErrorPopupCloseButton_Click" Background="#FFEAE7E7" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontSize="8" Padding="0" />
                     </Grid>
                 </Popup>
             </Grid>

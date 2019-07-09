@@ -28,6 +28,9 @@ namespace Inevent.Views
             InitializeComponent();
             LoadTags();
             DataContext = new DashboardModel();
+
+            DashboardButton.Background = (Brush)(new BrushConverter().ConvertFrom("#f7fafc"));
+            DashboardButton.Foreground = (Brush)(new BrushConverter().ConvertFrom("#1976d2"));
         }
 
         public async void LoadTags()
@@ -52,6 +55,22 @@ namespace Inevent.Views
             }
         }
 
+        public void ClearButtons()
+        {
+            DashboardButton.Background = null;
+            DashboardButton.Foreground = Brushes.Black;
+            ProfileEditButton.Background = null;
+            ProfileEditButton.Foreground = Brushes.Black;
+            CreateEventButton.Background = null;
+            CreateEventButton.Foreground = Brushes.Black;
+            CreatedButton.Background = null;
+            CreatedButton.Foreground = Brushes.Black;
+            SignedButton.Background = null;
+            SignedButton.Foreground = Brushes.Black;
+            MatchedButton.Background = null;
+            MatchedButton.Foreground = Brushes.Black;
+        }
+
         public void Dashboard_click(object sender, EventArgs e)
         {
             Content = new HomeModel();
@@ -69,6 +88,9 @@ namespace Inevent.Views
 
         private void EditProfile_Click(object sender, RoutedEventArgs e)
         {
+           ClearButtons();
+           ProfileEditButton.Background = (Brush)(new BrushConverter().ConvertFrom("#f7fafc"));
+           ProfileEditButton.Foreground = (Brush)(new BrushConverter().ConvertFrom("#1976d2"));
            DataContext = new EditProfileModel();
         }
 
@@ -79,20 +101,32 @@ namespace Inevent.Views
 
         private void CreateEvent_Click(object sender, RoutedEventArgs e)
         {
+            ClearButtons();
+            CreateEventButton.Background = (Brush)(new BrushConverter().ConvertFrom("#f7fafc"));
+            CreateEventButton.Foreground = (Brush)(new BrushConverter().ConvertFrom("#1976d2"));
             DataContext = new EventCreatorModel();
         }
 
         private void Created_Click(object sender, RoutedEventArgs e)
         {
+            ClearButtons();
+            CreatedButton.Background = (Brush)(new BrushConverter().ConvertFrom("#f7fafc"));
+            CreatedButton.Foreground = (Brush)(new BrushConverter().ConvertFrom("#1976d2"));
             DataContext = new CreatedEventsModel();
         }
 
         private void Signed_Click(object sender, RoutedEventArgs e)
         {
+            ClearButtons();
+            SignedButton.Background = (Brush)(new BrushConverter().ConvertFrom("#f7fafc"));
+            SignedButton.Foreground = (Brush)(new BrushConverter().ConvertFrom("#1976d2"));
             DataContext = new SignedEventsModel();
         }
         private void Matched_Click(object sender, RoutedEventArgs e)
         {
+            ClearButtons();
+            MatchedButton.Background = (Brush)(new BrushConverter().ConvertFrom("#f7fafc"));
+            MatchedButton.Foreground = (Brush)(new BrushConverter().ConvertFrom("#1976d2"));
             DataContext = new MatchedEventsModel();
         }
     }

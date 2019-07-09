@@ -7,26 +7,25 @@
              mc:Ignorable="d" 
              Style="{StaticResource All}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="0,15,0,0"  Name="Container">
-        <Grid Background="White" Margin="15,5,15,15">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible"  Grid.RowSpan="2">
-
-                <StackPanel Margin="0,0,0,25">
-
-                    <StackPanel Grid.Row="0">
-                        <Label Padding="15" Content="Edytuj profil" Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
-                        <Label Content="Wybierz swoje zainteresowania:" Padding="15 5" />
-                    </StackPanel>
-                    <ListBox Grid.Row="1" x:Name="TagList" Margin="10">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <CheckBox Content="{Binding Value}" Tag="{Binding Id}" IsChecked="{Binding IsChecked}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="16" FontWeight="Light"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <Button Grid.Row="2" Style="{StaticResource agreeButton}" Content="Zatwierdź" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Click="Submit_Click" />
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
+            <!--<ScrollViewer CanContentScroll="False" HorizontalScrollBarVisibility="Visible"  Grid.RowSpan="2">-->
+    <Grid Margin="0,15,0,0" Background="White" Name="Container">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="240" />
+            <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Padding="15" Content="Edytuj profil" Background="{x:Null}" FontSize="18" FontWeight="Medium"></Label>
+            <Label Content="Wybierz swoje zainteresowania:" Padding="15 5" />
+        </StackPanel>
+        <ListBox Grid.Row="1" x:Name="TagList" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Value}" Tag="{Binding Id}" IsChecked="{Binding IsChecked}" FontFamily="/Inevent;component/Fonts/#Open Sans" FontSize="16" FontWeight="Light"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="2" Style="{StaticResource eventInfoButton}" Content="Zatwierdź" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Submit_Click" Margin="5,0,0,0" />
     </Grid>
+            <!--</ScrollViewer>-->
 </UserControl>

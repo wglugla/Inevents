@@ -64,17 +64,17 @@ namespace Inevent.Views
                     Button eventEditButton = new Button()
                     {
                         Content = "Edytuj wydarzenie",
-                        Width = 150,
-                        Margin = new Thickness(10, 10, 10, 0),
-                        Style = (Style)FindResource("agreeButton")
+                        Width = 120,
+                        Margin = new Thickness(10, 0, 0, 0),
+                        Style = (Style)FindResource("eventInfoButton")
 
                     };
                     Button eventDeleteButton = new Button()
                     {
                         Content = "Usuń wydarzenie",
-                        Width = 150,
-                        Margin = new Thickness(10, 10, 10, 0),
-                        Style = (Style)FindResource("agreeButton")
+                        Width = 120,
+                        Margin = new Thickness(10, 0, 0, 0),
+                        Style = (Style)FindResource("eventInfoButton")
                     };
                     eventEditButton.Click += eventEditButton_click;
                     eventDeleteButton.Click += eventDeleteButton_click;

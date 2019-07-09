@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using APIConnect;
 using Inevent.ViewModels;
 
 namespace Inevent.Views
@@ -31,7 +32,7 @@ namespace Inevent.Views
             string username = UsernameBox.Text;
             string name = NameBox.Text;
             string surname = SurnameBox.Text;
-            string password = PasswordBox.Text;
+            string password = PasswordBox.Password.ToString();
 
             Login l = new Login();
             try
@@ -42,12 +43,17 @@ namespace Inevent.Views
                     bool success = await l.LoginUser(username, password);
                     if (success == true)
                     {
+                        ApiHelper.AddTokenHeader(Properties.Settings.Default.accessToken);
                         Content = new HomeModel();
                     }
                     else
                     {
-                        MessageBox.Show("Nie udało się zalogować!");
+                        MessageBox.Show("Nie udało się zarejestrować!");
                     }
+                }
+                else
+                {
+                    MessageBox.Show(result.ToString());
                 }
 
             }

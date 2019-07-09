@@ -50,6 +50,14 @@ namespace Inevent
             }
         }
 
+        /// <summary>
+        /// Metoda realizująca zapytanie z rejestracją nowego użytkownika
+        /// </summary>
+        /// <param name="username"> Login użytkownika </param>
+        /// <param name="name"> Imię użytkownika </param>
+        /// <param name="surname"> Nazwisko użytkownika </param>
+        /// <param name="password"> Hasło użytkownika </param>
+        /// <returns></returns>
         public async Task<bool> RegisterUser(string username, string name, string surname, string password)
         {
             object data = new
@@ -67,13 +75,13 @@ namespace Inevent
                 HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync("http://localhost:5000/api/users", content);
                 if (!response.IsSuccessStatusCode)
                 {
-                    return false;
+                    throw new Exception(response.ToString());
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
         }
     }

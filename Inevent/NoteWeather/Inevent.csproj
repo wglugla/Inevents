@@ -239,5 +239,41 @@
   <ItemGroup>
     <Resource Include="Images\loginPhoto.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mainIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="mainIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\mainIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\tagIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\heartIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\favouritesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\matchedIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\signedIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\createdIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\createIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\dashboardIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\detailsIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
